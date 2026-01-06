@@ -520,13 +520,15 @@
         
         .map-container {
             height: 300px;
-            background-color: #ddd;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--dark-gray);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         
         /* Footer */
@@ -859,6 +861,7 @@
                             </ul>
                         </li>
                         <li><a href="#activities">Recent Activities</a></li>
+                        <li><a href="#committee">Committee</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </nav>
@@ -903,6 +906,7 @@
                 </ul>
             </li>
             <li><a href="#activities">Recent Activities</a></li>
+            <li><a href="#committee">Committee</a></li>
             <li><a href="#contact">Contact Us</a></li>
             <li><a href="#donate" class="donate-btn" style="color: white; margin-top: 10px; text-align: center;">Donate Now</a></li>
         </ul>
@@ -1145,6 +1149,189 @@
         </div>
     </div>
 
+    <!-- Committee Section -->
+    <div id="committee">
+        <div class="page-header">
+            <h1>Temple Committee</h1>
+            <p>Our dedicated committee members serving the temple</p>
+        </div>
+        
+        <div class="container">
+            <section class="committee-content">
+                <h2 class="section-title telugu-text">కమిటీ సభ్యులు</h2>
+                
+                <div class="committee-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                    
+                    <!-- Founder -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--gold);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/founder.jpg" alt="శ్రీ వటుకనాధుల వారు" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ వటుకనాధుల వారు</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">ఫౌండర్</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Chairman -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/Chairman.jpg" alt="శ్రీ యెల్లా సురేష్ రెడ్డి" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ యెల్లా సురేష్ రెడ్డి</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">చైర్మన్</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Vice Chairman -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/ViceChairman.jpg" alt="శ్రీ నెల్లూరు సుబ్బారావు" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ నెల్లూరు సుబ్బారావు</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">వైస్ చైర్మన్</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Secretary -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/Secratary.jpg" alt="శ్రీ ముమ్ముడి రామయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ ముమ్ముడి రామయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">సెక్రటరీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Joint Secretary -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/JointSecratary.jpg" alt="శ్రీ కోటంరెడ్డి పరంధామ రెడ్డి" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ కోటంరెడ్డి పరంధామ రెడ్డి</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">జాయింట్ సెక్రటరీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Treasurer -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/Treasurer.jpg" alt="శ్రీ గెరికి బలరామయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ గెరికి బలరామయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">ట్రెసరర్</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Founder Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/FMTVijay.jpg" alt="శ్రీ యెల్లా విజయభాస్కరరెడ్డి" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ యెల్లా విజయభాస్కరరెడ్డి</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">ఫౌండర్ మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTRavindra.jpg" alt="శ్రీ గ్రిద్దలూరు రవీంద్ర రెడ్డి" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ గ్రిద్దలూరు రవీంద్ర రెడ్డి</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTKrishnaiah.jpg" alt="శ్రీ మాకాని కృష్ణయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ మాకాని కృష్ణయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTRamanaih.jpg" alt="శ్రీ పుచ్ఛకట్ల వెంకట రమణయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ పుచ్ఛకట్ల వెంకట రమణయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTChenchaiah.jpg" alt="శ్రీ ఉల్లిపాయల చెంచయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ ఉల్లిపాయల చెంచయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTBasha.jpg" alt="శ్రీ షేక్ ఖాదర్ బాషా" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ షేక్ ఖాదర్ బాషా</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTRamanayya.jpg" alt="శ్రీ తేరూరు రమణయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ తేరూరు రమణయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTAnkaiah.jpg" alt="శ్రీ సలపతి అంకయ్య" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ సలపతి అంకయ్య</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member Trustee -->
+                    <div class="committee-card" style="background-color: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); transition: transform 0.3s; border-top: 4px solid var(--primary-red);">
+                        <div class="committee-image" style="height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="images/05-community-team/MTNagamma.jpg" alt="శ్రీ రాగాల నాగమ్మ" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="committee-info" style="padding: 20px; text-align: center;">
+                            <h4 style="color: var(--dark-red); margin-bottom: 5px; font-size: 1.1rem;">శ్రీ రాగాల నాగమ్మ</h4>
+                            <p style="color: var(--primary-red); font-weight: 600; margin: 0; font-size: 0.9rem;">మెంబరు ట్రస్టీ</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+
     <!-- Contact Page -->
     <div id="contact">
         <div class="page-header">
@@ -1232,14 +1419,35 @@
                             </div>
                         </div>
                         
+                        <!-- Location Map Section -->
                         <h3 class="section-title">Location Map</h3>
+                        
+                        <!-- Location Details -->
+                        <div style="margin-bottom: 20px; background-color: #f9f9f9; padding: 15px; border-radius: 5px; border-left: 4px solid var(--primary-red);">
+                            <p style="margin-bottom: 8px;"><strong>📍 Bhagavathi Sri Venkatamba Temple</strong></p>
+                            <p style="margin-bottom: 5px; color: #555;">Vojili mandal, Karaballavolu, Andhra Pradesh 524402</p>
+                            <p style="margin-bottom: 5px; color: #555;">⭐ <strong>4.2</strong> ★★★★ (5 reviews)</p>
+                            <p style="margin-bottom: 5px; color: #555; font-size: 0.9rem;"><strong>Nearby:</strong> Dodlamitta Temple, Karaballavolu Post Office, Karaballavolu Grama Sachivalayam</p>
+                        </div>
+                        
+                        <!-- Embedded Google Map -->
                         <div class="map-container">
-                            <div>
-                                <p>Google Map Location</p>
-                                <a href="https://maps.app.goo.gl/2eJrKobdAoB35Yaf6" target="_blank" class="donate-btn" style="margin-top: 10px;">
-                                    Open in Google Maps
-                                </a>
-                            </div>
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.314716937853!2d79.97954357583953!3d14.307491686126847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4cf2b8c9c3b3a5%3A0x6d8d1b82e3a8f4f1!2sBhagavathi%20Sri%20Venkatamba%20Temple!5e0!3m2!1sen!2sin!4v1692374400000!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: 8px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        
+                        <!-- Button to open in Google Maps -->
+                        <div style="text-align: center; margin-top: 15px;">
+                            <a href="https://maps.app.goo.gl/2eJrKobdAoB35Yaf6" target="_blank" class="donate-btn" style="margin-top: 10px;">
+                                <i class="fas fa-external-link-alt"></i> Open in Google Maps
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1278,6 +1486,7 @@
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#activities">Recent Activities</a></li>
+                        <li><a href="#committee">Committee</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
@@ -1416,7 +1625,7 @@
                 
                 // Don't prevent default for actual page sections
                 if (href === '#home' || href === '#about' || href === '#services' || 
-                    href === '#activities' || href === '#contact') {
+                    href === '#activities' || href === '#committee' || href === '#contact') {
                     e.preventDefault();
                     
                     // Close mobile menu if open
@@ -1469,6 +1678,19 @@
                     }, 500);
                 }
             }
+        });
+        
+        // Add hover effect to committee cards
+        document.querySelectorAll('.committee-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
+            });
         });
     </script>
 </body>
