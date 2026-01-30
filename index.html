@@ -811,7 +811,293 @@
             font-size: 0.9rem;
             margin-bottom: 10px;
         }
-    </style>
+    
+        /* =========================
+           Donation Modal (Option B)
+           ========================= */
+        .donation-modal-overlay{
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.6);
+            z-index:3000;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+        }
+        .donation-modal{
+            width:min(1100px, 100%);
+            max-height:90vh;
+            overflow:auto;
+            border-radius:24px;
+            background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .donation-modal-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:18px 22px;
+            position:sticky;
+            top:0;
+            background:rgba(255, 213, 79, 0.92);
+            backdrop-filter: blur(6px);
+            border-bottom:1px solid rgba(0,0,0,0.08);
+            z-index:2;
+        }
+        .donation-modal-header-left{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-family:'Playfair Display', serif;
+            color:#1b1b1b;
+        }
+        .donation-badge{
+            background:rgba(255,255,255,0.45);
+            padding:8px 12px;
+            border-radius:999px;
+            font-weight:700;
+            font-size:0.95rem;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            border:1px solid rgba(0,0,0,0.08);
+        }
+        .donation-close{
+            background:transparent;
+            border:none;
+            font-size:1.6rem;
+            cursor:pointer;
+            color:#1b1b1b;
+            padding:6px 10px;
+            border-radius:12px;
+        }
+        .donation-close:hover{ background:rgba(255,255,255,0.35); }
+
+        .donation-modal-body{
+            padding:22px;
+        }
+        .donation-grid{
+            display:grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap:18px;
+        }
+        .donation-card{
+            background: rgba(255, 193, 7, 0.32);
+            border:1px solid rgba(0,0,0,0.08);
+            border-radius:22px;
+            padding:22px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        .donation-title{
+            font-family:'Playfair Display', serif;
+            font-size:2.0rem;
+            margin:0 0 6px 0;
+            color:#1a1a1a;
+        }
+        .donation-subtitle{
+            margin:0 0 14px 0;
+            color:rgba(0,0,0,0.7);
+            font-family: 'Noto Sans Telugu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .donation-hr{
+            height:1px;
+            background:rgba(0,0,0,0.12);
+            border:none;
+            margin:16px 0;
+        }
+        .donation-label{
+            font-weight:800;
+            letter-spacing:0.04em;
+            font-size:0.9rem;
+            color:rgba(0,0,0,0.75);
+            margin-bottom:10px;
+            text-transform:uppercase;
+        }
+        .amount-row{
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            align-items:center;
+        }
+        .amount-pill{
+            border:1px solid rgba(0,0,0,0.18);
+            background:rgba(255,255,255,0.35);
+            padding:12px 18px;
+            border-radius:16px;
+            font-weight:800;
+            cursor:pointer;
+            transition: transform 0.08s ease, background 0.2s ease;
+        }
+        .amount-pill:hover{ transform: translateY(-1px); }
+        .amount-pill.active{
+            background:#c62828;
+            color:#fff;
+            border-color:#c62828;
+        }
+        .amount-custom{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            border:1px solid rgba(0,0,0,0.18);
+            background:rgba(255,255,255,0.35);
+            padding:10px 14px;
+            border-radius:16px;
+        }
+        .amount-custom span{
+            font-weight:900;
+            font-size:1.05rem;
+        }
+        .amount-custom input{
+            width:120px;
+            border:none;
+            outline:none;
+            background:transparent;
+            font-weight:800;
+            font-size:1rem;
+        }
+
+        .donation-actions{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+            margin-top:14px;
+        }
+        .pay-btn{
+            flex:1;
+            min-width:220px;
+            border:none;
+            border-radius:18px;
+            padding:14px 16px;
+            font-weight:900;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.14);
+        }
+        .pay-btn.phonepe{ background:#5e2bbd; color:#fff; }
+        .pay-btn.upi{ background:rgba(255,255,255,0.55); color:#b71c1c; border:1px solid rgba(0,0,0,0.12); }
+
+        .bank-box{
+            margin-top:18px;
+            background:rgba(255, 193, 7, 0.25);
+            border:1px solid rgba(0,0,0,0.1);
+            border-radius:18px;
+            padding:16px;
+        }
+        .bank-head{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-weight:900;
+            color:#b71c1c;
+            margin-bottom:10px;
+        }
+        .bank-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:12px;
+        }
+        .field{
+            background:rgba(255,255,255,0.45);
+            border:1px solid rgba(0,0,0,0.12);
+            border-radius:14px;
+            padding:10px 12px;
+        }
+        .field small{ display:block; color:rgba(0,0,0,0.65); font-weight:800; }
+        .field-row{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:10px;
+            margin-top:4px;
+            font-weight:900;
+        }
+        .copy-btn{
+            border:none;
+            background:rgba(255,255,255,0.45);
+            border:1px solid rgba(0,0,0,0.12);
+            padding:6px 10px;
+            border-radius:10px;
+            cursor:pointer;
+        }
+        .bank-wide{ grid-column:1 / -1; }
+
+        .qr-wrap{
+            display:flex;
+            flex-direction:column;
+            gap:14px;
+        }
+        .qr-box{
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            align-items:center;
+            text-align:center;
+        }
+        .qr-frame{
+            width:min(330px, 100%);
+            padding:18px;
+            border-radius:22px;
+            background:rgba(255,255,255,0.55);
+            border:1px solid rgba(0,0,0,0.12);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.12);
+        }
+        .qr-frame img{
+            width:100%;
+            height:auto;
+            display:block;
+            border-radius:14px;
+            background:#fff;
+        }
+        .upi-row{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+            font-weight:900;
+            color:#b71c1c;
+        }
+        .help-box{
+            background:rgba(255, 193, 7, 0.25);
+            border:1px solid rgba(0,0,0,0.1);
+            border-radius:18px;
+            padding:16px;
+        }
+        .help-title{
+            font-family:'Playfair Display', serif;
+            font-size:1.35rem;
+            margin:0 0 8px 0;
+            color:#1a1a1a;
+        }
+        .help-item{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            background:rgba(255,255,255,0.45);
+            border:1px solid rgba(0,0,0,0.12);
+            border-radius:14px;
+            padding:10px 12px;
+            font-weight:900;
+            margin-top:10px;
+        }
+        .donation-footnote{
+            margin-top:14px;
+            display:flex;
+            align-items:flex-start;
+            gap:10px;
+            color:rgba(0,0,0,0.75);
+            font-weight:700;
+        }
+
+        @media (max-width: 900px){
+            .donation-grid{ grid-template-columns:1fr; }
+            .bank-grid{ grid-template-columns:1fr; }
+        }
+</style>
 </head>
 <body>
     <!-- Header Top Section -->
@@ -872,7 +1158,7 @@
                     </ul>
                 </nav>
                 
-                <button class="donate-btn" id="donateBtn">Donate Now</button>
+                <button class="donate-btn" id="donateBtn" data-open-donation="true">Donate Now</button>
                 
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -914,7 +1200,7 @@
             <li><a href="#activities">Recent Activities</a></li>
             <li><a href="#committee">Committee</a></li>
             <li><a href="#contact">Contact Us</a></li>
-            <li><a href="#donate" class="donate-btn" style="color: white; margin-top: 10px; text-align: center;">Donate Now</a></li>
+            <li><a href="#" id="mobileDonateBtn" data-open-donation="true" class="donate-btn" style="color: white; margin-top: 10px; text-align: center;">Donate Now</a></li>
         </ul>
     </div>
     
@@ -989,7 +1275,7 @@
                             <p><strong>UPI ID:</strong> omsrivenkatamba@upi</p>
                         </div>
                         
-                        <button class="donate-btn">Donate Now</button>
+                        <button class="donate-btn" id="homeDonateBtn" data-open-donation="true">Donate Now</button>
                     </div>
                 </div>
             </div>
@@ -1639,38 +1925,135 @@
         </div>
     </footer>
 
-    <!-- Donation Modal -->
-    <div id="donationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center;">
-        <div style="background-color: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2 style="color: var(--dark-red);">Donation Details</h2>
-                <button id="closeModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-gray);">&times;</button>
+    
+    <!-- Donation Modal (Option B - Full Donation Screen) -->
+    <div id="donationModal" class="donation-modal-overlay" aria-hidden="true" role="dialog" aria-label="Donation">
+        <div class="donation-modal">
+            <div class="donation-modal-header">
+                <div class="donation-modal-header-left">
+                    <div class="donation-badge"><i class="fa-solid fa-hand-holding-heart"></i> Donate Now</div>
+                    <div style="font-weight:800;color:rgba(0,0,0,0.72);">Support Our Sevas</div>
+                </div>
+                <div class="donation-badge"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+                <button id="closeModal" class="donation-close" aria-label="Close donation modal">&times;</button>
             </div>
-            
-            <div class="donation-details">
-                <h3>Bank Transfer Details:</h3>
-                <p><strong>Account Name:</strong> Bhagavathi Sri Venkatamba Temple</p>
-                <p><strong>Account No:</strong> 6866890630</p>
-                <p><strong>IFSC Code:</strong> IDIB000N127</p>
-                <p><strong>Bank:</strong> Indian Bank</p>
-                <p><strong>Branch:</strong> Naidupet Branch</p>
-                
-                <div style="margin: 20px 0;">
-                    <h3>UPI Payment:</h3>
-                    <p><strong>UPI ID:</strong> omsrivenkatamba@upi</p>
-                    <div class="qr-code" style="margin: 15px auto;">
-                        <img src="images/01-main-slide/donation-qr.jpg" alt="UPI QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+
+            <div class="donation-modal-body">
+                <div class="donation-grid">
+                    <!-- Left: Amount + Pay + Bank -->
+                    <div class="donation-card">
+                        <h2 class="donation-title">Support Our Activities</h2>
+                        <p class="donation-subtitle">Your donations help us continue our spiritual and community services. Choose an amount to donate via UPI or PhonePe.</p>
+
+                        <hr class="donation-hr">
+
+                        <div class="donation-label">Select Amount (INR)</div>
+                        <div class="amount-row" id="amountRow">
+                            <div class="amount-custom" title="Custom amount">
+                                <span>₹</span>
+                                <input id="customAmount" type="number" inputmode="numeric" placeholder="Custom" min="1">
+                            </div>
+
+                            <button type="button" class="amount-pill" data-amount="101">₹101</button>
+                            <button type="button" class="amount-pill" data-amount="251">₹251</button>
+                            <button type="button" class="amount-pill active" data-amount="501">₹501</button>
+                            <button type="button" class="amount-pill" data-amount="1001">₹1001</button>
+                            <button type="button" class="amount-pill" data-amount="2001">₹2001</button>
+                            <button type="button" class="amount-pill" data-amount="5001">₹5001</button>
+                        </div>
+
+                        <div class="donation-actions">
+                            <button type="button" class="pay-btn phonepe" id="payPhonePe">
+                                <i class="fa-solid fa-mobile-screen-button"></i> Pay via PhonePe
+                            </button>
+                            <button type="button" class="pay-btn upi" id="payUPI">
+                                <i class="fa-solid fa-qrcode"></i> Any UPI App
+                            </button>
+                        </div>
+
+                        <div class="bank-box">
+                            <div class="bank-head"><i class="fa-solid fa-building-columns"></i> Direct Bank Transfer</div>
+
+                            <div class="bank-grid">
+                                <div class="field">
+                                    <small>Account Number</small>
+                                    <div class="field-row">
+                                        <span id="acctNumber">6866890630</span>
+                                        <button type="button" class="copy-btn" data-copy="6866890630" aria-label="Copy account number">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <small>IFSC Code</small>
+                                    <div class="field-row">
+                                        <span id="ifscCode">IDIB000N127</span>
+                                        <button type="button" class="copy-btn" data-copy="IDIB000N127" aria-label="Copy IFSC code">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="field bank-wide">
+                                    <small>Bank & Branch</small>
+                                    <div class="field-row" style="justify-content:flex-start;">
+                                        <span>Indian Bank, Naidupet Branch</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="donation-footnote">
+                            <i class="fa-solid fa-circle-check" style="color:#1b5e20;margin-top:3px;"></i>
+                            <div>All donations are used for Temple Seva, Annadanam, and spiritual activities.</div>
+                        </div>
+
+                        <button id="closeModalBtn" class="donate-btn" style="margin-top: 18px; width: 100%;">Close</button>
+                    </div>
+
+                    <!-- Right: QR + Help -->
+                    <div class="qr-wrap">
+                        <div class="donation-card qr-box">
+                            <h2 class="donation-title" style="font-size:1.8rem;">Scan to Donate</h2>
+                            <p class="donation-subtitle">Scan this QR code with any UPI app</p>
+
+                            <div class="qr-frame">
+                                <img src="images/01-main-slide/donation-qr.jpg" alt="UPI QR Code">
+                            </div>
+
+                            <div class="upi-row">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span id="upiIdText">omsrivenkatamba@upi</span>
+                                <button type="button" class="copy-btn" data-copy="omsrivenkatamba@upi" aria-label="Copy UPI ID">
+                                    <i class="fa-regular fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="donation-card help-box">
+                            <h3 class="help-title">Need Help?</h3>
+                            <div style="color:rgba(0,0,0,0.7); font-weight:700;">
+                                If you face any issues with the payment or need more information, please reach out to us:
+                            </div>
+
+                            <div class="help-item">
+                                <i class="fa-solid fa-phone" style="color:#b71c1c;"></i>
+                                <span>+91 8309 545 660</span>
+                            </div>
+
+                            <div class="help-item">
+                                <i class="fa-solid fa-envelope" style="color:#b71c1c;"></i>
+                                <span>omsrivenkatamba@gmail.com</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <p style="font-style: italic; color: #666; margin-top: 20px;">Your donations are eligible for tax exemption under 80G of Income Tax Act.</p>
             </div>
-            
-            <button id="closeModalBtn" class="donate-btn" style="margin-top: 20px; width: 100%;">Close</button>
         </div>
     </div>
 
-    <script>
+<script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1725,31 +2108,115 @@
         // Auto slide every 5 seconds
         setInterval(nextSlide, 5000);
         
-        // Donation Modal
-        const donateBtn = document.getElementById('donateBtn');
+        
+        // Donation Modal (Option B - Full Donation Screen)
         const donationModal = document.getElementById('donationModal');
         const closeModal = document.getElementById('closeModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        
-        donateBtn.addEventListener('click', () => {
+        const customAmountInput = document.getElementById('customAmount');
+        const amountPills = document.querySelectorAll('.amount-pill');
+        const copyButtons = document.querySelectorAll('[data-copy]');
+
+        let selectedAmount = 501;
+
+        function openDonationModal(e) {
+            if (e) e.preventDefault();
+            if (!donationModal) return;
             donationModal.style.display = 'flex';
-        });
-        
-        closeModal.addEventListener('click', () => {
+            donationModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDonationModal() {
+            if (!donationModal) return;
             donationModal.style.display = 'none';
+            donationModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        // Open from ANY button/link that has data-open-donation="true"
+        document.querySelectorAll('[data-open-donation="true"]').forEach(el => {
+            el.addEventListener('click', openDonationModal);
         });
-        
-        closeModalBtn.addEventListener('click', () => {
-            donationModal.style.display = 'none';
-        });
-        
-        // Close modal when clicking outside
-        donationModal.addEventListener('click', (e) => {
-            if (e.target === donationModal) {
-                donationModal.style.display = 'none';
+
+        if (closeModal) closeModal.addEventListener('click', closeDonationModal);
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeDonationModal);
+
+        // Close when clicking outside modal box
+        if (donationModal) {
+            donationModal.addEventListener('click', (e) => {
+                if (e.target === donationModal) closeDonationModal();
+            });
+        }
+
+        // Escape key closes modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && donationModal && donationModal.style.display === 'flex') {
+                closeDonationModal();
             }
         });
-        
+
+        // Amount selection
+        amountPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                amountPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                selectedAmount = Number(pill.getAttribute('data-amount') || 0) || selectedAmount;
+                if (customAmountInput) customAmountInput.value = '';
+            });
+        });
+
+        if (customAmountInput) {
+            customAmountInput.addEventListener('input', () => {
+                const v = Number(customAmountInput.value || 0);
+                if (v > 0) {
+                    amountPills.forEach(p => p.classList.remove('active'));
+                    selectedAmount = v;
+                }
+            });
+        }
+
+        // Copy helpers
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const text = btn.getAttribute('data-copy') || '';
+                if (!text) return;
+                try {
+                    await navigator.clipboard.writeText(text);
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    setTimeout(() => { btn.innerHTML = '<i class="fa-regular fa-copy"></i>'; }, 900);
+                } catch (err) {
+                    // fallback
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                }
+            });
+        });
+
+        // Optional: quick helper buttons (kept simple)
+        const payPhonePe = document.getElementById('payPhonePe');
+        const payUPI = document.getElementById('payUPI');
+
+        if (payPhonePe) {
+            payPhonePe.addEventListener('click', () => {
+                // Most reliable on web is to prompt user to scan QR / use UPI ID
+                alert('To pay via PhonePe: open PhonePe → Scan QR → scan the QR shown on the right.
+Selected Amount: ₹' + selectedAmount);
+            });
+        }
+
+        if (payUPI) {
+            payUPI.addEventListener('click', () => {
+                alert('To pay with any UPI app: scan the QR shown on the right or send to UPI ID: omsrivenkatamba@upi
+Selected Amount: ₹' + selectedAmount);
+            });
+        }
+
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
