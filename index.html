@@ -2747,5 +2747,51 @@ Selected Amount: ₹' + selectedAmount);
         })();
 
 </script>
+
+<script>
+(function(){
+  function openDonation(){
+    var modal = document.getElementById('donationModal');
+    if(!modal) return;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDonation(){
+    var modal = document.getElementById('donationModal');
+    if(!modal) return;
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  // Bind open buttons (super defensive)
+  var ids = ['donateBtn','homeDonateBtn','mobileDonateBtn'];
+  ids.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); openDonation(); }); }
+  });
+
+  document.querySelectorAll('[data-open-donation="true"]').forEach(function(el){
+    el.addEventListener('click', function(e){ e.preventDefault(); openDonation(); });
+  });
+
+  // Close buttons
+  var closeX = document.getElementById('closeDonationModal');
+  var back = document.getElementById('donationBackBtn');
+  if(closeX){ closeX.addEventListener('click', closeDonation); }
+  if(back){ back.addEventListener('click', closeDonation); }
+
+  // Outside click + ESC
+  var modal = document.getElementById('donationModal');
+  if(modal){
+    modal.addEventListener('click', function(e){ if(e.target === modal) closeDonation(); });
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeDonation();
+  });
+})();
+</script>
+
 </body>
 </html>
