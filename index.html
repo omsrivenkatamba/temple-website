@@ -2302,6 +2302,7 @@
                         
                         <div class="donation-card" id="netbankingSection" style="margin-top:18px;">
                             <div class="donation-section-title"><i class="fas fa-building-columns"></i> NetBanking (Bank Transfer)</div>
+                            <div class="donation-divider"></div>
 
                             <div style="margin-top:10px;font-size:14px;line-height:1.5;">
                                 <div style="opacity:0.85;margin-bottom:12px;">
@@ -2321,6 +2322,12 @@
                                     </div>
 
                                     <div class="netbanking-row" style="margin-top:12px;">
+
+                                        <div class="netbanking-field" style="flex:1;min-width:260px;">
+                                            <label for="donorUTR">Reference / UTR Number</label>
+                                            <input id="donorUTR" type="text" placeholder="UTR / Reference No. (after transfer)">
+                                        </div>
+
                                         <div class="netbanking-field" style="flex:1;min-width:260px;">
                                             <label for="donorEmail">Email</label>
                                             <input id="donorEmail" type="email" placeholder="name@example.com" autocomplete="email">
@@ -3210,14 +3217,17 @@
             const s = String(v || '').replace(/\s+/g,'').trim();
             return s.length >= 8;
         }
+        
         function getDonor(){
             const nameEl = document.getElementById('donorName');
             const phoneEl = document.getElementById('donorPhone');
             const emailEl = document.getElementById('donorEmail');
+            const utrEl = document.getElementById('donorUTR');
             return {
                 name: nameEl ? nameEl.value.trim() : '',
                 phone: phoneEl ? phoneEl.value.trim() : '',
-                email: emailEl ? emailEl.value.trim() : ''
+                email: emailEl ? emailEl.value.trim() : '',
+                utr: utrEl ? utrEl.value.trim() : ''
             };
         }
         function updateNetbankingButtons(){
@@ -3282,6 +3292,7 @@
                     lines.push('Email: ' + donor.email);
                     if(amount) lines.push('Amount: INR ' + amount);
                     lines.push('Bank Used: ' + bankName);
+                    if(donor.utr) lines.push('UTR / Reference: ' + donor.utr);
                     lines.push('Transfer Mode: IMPS/NEFT/RTGS (Donor completed)');
                     lines.push('Date/Time: ' + new Date().toLocaleString());
                     lines.push('');
