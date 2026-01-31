@@ -1024,6 +1024,8 @@
             color:#fff;
         }
         .donation-pay-btn.upi{
+            border: 1px solid rgba(198,40,40,0.25);
+
             background: rgba(255,255,255,0.26);
             color:#b31515;
         }
@@ -1250,6 +1252,8 @@
             box-shadow: 0 18px 34px rgba(111,45,189,0.28) !important;
         }
         .donation-pay-btn.upi{
+            border: 1px solid rgba(198,40,40,0.25);
+
             background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.30) 100%) !important;
             color: #8e0000 !important;
         }
@@ -2952,7 +2956,34 @@
     if(e.key === 'Escape') closeDonation();
   });
 })();
-</script>
 
+        // ===== Amount selection fix =====
+        let selectedAmount = null;
+
+        function wireAmountButtons(){
+            const btns = document.querySelectorAll('.donation-amount-btn');
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // clear active
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // read amount
+                    const amt = btn.getAttribute('data-amount') || btn.innerText.replace(/[^0-9]/g,'');
+                    selectedAmount = Number(amt);
+
+                    // clear custom input if any
+                    const customInput = document.getElementById('customAmountInput');
+                    if(customInput) customInput.value = '';
+
+                    showToast('Selected ₹' + selectedAmount);
+                });
+            });
+        }
+
+        // Ensure it runs after modal opens
+        document.addEventListener('DOMContentLoaded', wireAmountButtons);
+
+    </script>
 </body>
 </html>
