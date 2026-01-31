@@ -1204,6 +1204,34 @@
         }
 
         /* ===== Apple-glossy Donation Modal Overrides ===== */
+
+        .netbanking-row{
+            display:flex;
+            gap:12px;
+            align-items:stretch;
+            flex-wrap:wrap;
+        }
+        #bankSelect{
+            flex: 1;
+            min-width: 260px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.55);
+            font-weight: 800;
+            outline: none;
+        }
+        #bankSelect:focus{
+            box-shadow: 0 0 0 4px rgba(198,40,40,0.18);
+            border-color: rgba(198,40,40,0.35);
+        }
+        #openBankNetbanking[disabled]{
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none !important;
+            filter: none !important;
+        }
+
         .donation-modal-overlay{
             background:
               radial-gradient(1200px 700px at 20% 10%, rgba(99,102,241,0.22), transparent 60%),
@@ -2195,23 +2223,79 @@
                         </div>
 
 
+                        
                         <div class="donation-card" id="netbankingSection" style="margin-top:18px;">
                             <div class="donation-section-title"><i class="fas fa-building-columns"></i> NetBanking (Bank Transfer)</div>
+
                             <div style="margin-top:10px;font-size:14px;line-height:1.5;">
-                                <div style="opacity:0.85;margin-bottom:10px;">
-                                    Use your bank’s NetBanking site to send an IMPS/NEFT transfer using the details above.
+                                <div style="opacity:0.85;margin-bottom:12px;">
+                                    Choose your bank from the list and we’ll open a safe search for the official NetBanking login page.
+                                    (This avoids hardcoding URLs and helps prevent wrong/old links.)
                                 </div>
-                                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
-                                    <a class="bank-link" href="https://onlinesbi.sbi.bank.in/" target="_blank" rel="noopener">SBI OnlineSBI</a>
-                                    <a class="bank-link" href="https://netportal.hdfcbank.com/nb-login/epilogin.jsp" target="_blank" rel="noopener">HDFC NetBanking</a>
-                                    <a class="bank-link" href="https://retailnetbanking.icici.bank.in/" target="_blank" rel="noopener">ICICI NetBanking</a>
-                                    <a class="bank-link" href="https://www.axisbank.com/bank-smart/internet-banking" target="_blank" rel="noopener">Axis Internet Banking</a>
+
+                                <div class="netbanking-lov">
+                                    <label class="donation-label" style="margin:0 0 8px 0;">Select Bank</label>
+                                    <div class="netbanking-row">
+                                        <select id="bankSelect" aria-label="Select bank for netbanking">
+                                            <option value="" selected disabled>-- Select your bank --</option>
+                                            <option value="0">State Bank of India (SBI)</option>
+                                            <option value="1">HDFC Bank</option>
+                                            <option value="2">ICICI Bank</option>
+                                            <option value="3">Axis Bank</option>
+                                            <option value="4">Kotak Mahindra Bank</option>
+                                            <option value="5">Punjab National Bank (PNB)</option>
+                                            <option value="6">Bank of Baroda</option>
+                                            <option value="7">Canara Bank</option>
+                                            <option value="8">Union Bank of India</option>
+                                            <option value="9">Indian Bank</option>
+                                            <option value="10">IDBI Bank</option>
+                                            <option value="11">Bank of India</option>
+                                            <option value="12">Central Bank of India</option>
+                                            <option value="13">UCO Bank</option>
+                                            <option value="14">Bank of Maharashtra</option>
+                                            <option value="15">Indian Overseas Bank</option>
+                                            <option value="16">Punjab & Sind Bank</option>
+                                            <option value="17">Yes Bank</option>
+                                            <option value="18">IndusInd Bank</option>
+                                            <option value="19">IDFC FIRST Bank</option>
+                                            <option value="20">Federal Bank</option>
+                                            <option value="21">RBL Bank</option>
+                                            <option value="22">AU Small Finance Bank</option>
+                                            <option value="23">Bandhan Bank</option>
+                                            <option value="24">South Indian Bank</option>
+                                            <option value="25">Karnataka Bank</option>
+                                            <option value="26">Karur Vysya Bank</option>
+                                            <option value="27">City Union Bank</option>
+                                            <option value="28">Dhanlaxmi Bank</option>
+                                            <option value="29">Jammu & Kashmir Bank</option>
+                                            <option value="30">Tamilnad Mercantile Bank</option>
+                                            <option value="31">CSB Bank</option>
+                                            <option value="32">Nainital Bank</option>
+                                            <option value="33">HSBC India</option>
+                                            <option value="34">Standard Chartered Bank India</option>
+                                            <option value="35">Citibank India</option>
+                                        </select>
+                                        <button class="donation-pay-btn netbanking" id="openBankNetbanking" type="button" disabled>
+                                            <i class="fas fa-arrow-up-right-from-square"></i>
+                                            <span>Open</span>
+                                        </button>
+                                    </div>
+                                    <div style="margin-top:10px;opacity:0.75;font-size:12.5px;">
+                                        After opening your bank’s NetBanking page, send an IMPS/NEFT transfer using the Account Name / Account Number / IFSC above.
+                                    </div>
                                 </div>
-                                <div style="margin-top:12px;opacity:0.75;font-size:12.5px;">
-                                    Tip: If you’re on a phone, your bank app may handle NetBanking automatically after login.
+
+                                <div style="margin-top:14px;opacity:0.9;font-weight:800;">Popular quick links</div>
+                                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px;">
+                                    <a class="bank-link" href="https://www.google.com/search?q=State+Bank+of+India+netbanking+login" target="_blank" rel="noopener">SBI NetBanking</a>
+                                    <a class="bank-link" href="https://www.google.com/search?q=HDFC+netbanking+login" target="_blank" rel="noopener">HDFC NetBanking</a>
+                                    <a class="bank-link" href="https://www.google.com/search?q=ICICI+netbanking+login" target="_blank" rel="noopener">ICICI NetBanking</a>
+                                    <a class="bank-link" href="https://www.google.com/search?q=Axis+Bank+netbanking+login" target="_blank" rel="noopener">Axis NetBanking</a>
                                 </div>
                             </div>
                         </div>
+
+</div>
 
                         <div class="donation-footnote">
                             <i class="fas fa-check-circle"></i>
@@ -2966,6 +3050,29 @@
             if(payPhonePe) payPhonePe.addEventListener('click', () => handlePay('phonepe'));
             if(payAnyUpi) payAnyUpi.addEventListener('click', () => handlePay('upi'));
         })();
+
+
+        // NetBanking LOV: open a safe search for the official bank NetBanking login page
+        const bankSelect = document.getElementById('bankSelect');
+        const openBankBtn = document.getElementById('openBankNetbanking');
+
+        function bankSearchUrl(bankName){
+            const q = encodeURIComponent(bankName + ' netbanking login');
+            return 'https://www.google.com/search?q=' + q;
+        }
+
+        if(bankSelect && openBankBtn){
+            bankSelect.addEventListener('change', () => {
+                openBankBtn.disabled = !bankSelect.value;
+            });
+
+            openBankBtn.addEventListener('click', () => {
+                if(!bankSelect.value) return;
+                const bankName = bankSelect.options[bankSelect.selectedIndex].textContent;
+                window.open(bankSearchUrl(bankName), '_blank', 'noopener');
+                showToast('Opening NetBanking for: ' + bankName);
+            });
+        }
 
 </script>
 
