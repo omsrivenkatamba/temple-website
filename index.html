@@ -1452,7 +1452,7 @@
                             <div style="margin: 20px 0;">
                                 <h4>UPI QR Code:</h4>
                                 <div class="qr-code">
-                                    <img src="images/01-main-slide/donation-qr2.png" alt="UPI QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+                                    <img src="images/01-main-slide/donation-qr2.png" alt="Scan to Donate QR" style="width:100%;height:auto;">
                                 </div>
                             </div>
                             
@@ -2109,7 +2109,12 @@
                                 <i class="fas fa-qrcode"></i>
                                 <span>Any UPI App</span>
                             </button>
-                        </div>
+                        
+        <div class="donation-center-text" style="margin-top:10px;font-size:13px;opacity:0.8;">
+            📱 PhonePe / UPI app buttons work on Android phones. On iPhone & Mac, please scan the QR code.
+        </div>
+
+</div>
 
                         <div class="donation-card" style="margin-top:18px;">
                             <div class="donation-section-title">
@@ -2162,8 +2167,7 @@
 
                             <div class="donation-qr-wrap">
                                 <div class="donation-qr">
-                                    <img src="images/01-main-slide/donation-qr.jpg" alt="UPI QR Code"
-                                         onerror="this.onerror=null; this.src='images/01-main-slide/donation-qr2.png';">
+                                    <img src="images/01-main-slide/donation-qr2.png" alt="Scan to Donate QR" style="width:100%;height:auto;">
                                 </div>
                             </div>
 
@@ -2224,7 +2228,7 @@
                             <p class="donation-subtitle">Scan this QR code with any UPI app</p>
 
                             <div class="qr-frame">
-                                <img src="images/01-main-slide/donation-qr.jpg" alt="UPI QR Code">
+                                <img src="images/01-main-slide/donation-qr2.png" alt="Scan to Donate QR" style="width:100%;height:auto;">
                             </div>
 
                             <div class="upi-row">
@@ -2439,6 +2443,9 @@
                 const upiUrl = buildUpiUrl(amount);
 
                 // Try PhonePe first, then fallback to generic UPI
+                
+                showToast('PhonePe app deep links are blocked on iPhone & Mac browsers. Please scan the QR or use Any UPI App on Android.');
+
                 openDeepLink(phonepeUrl);
                 setTimeout(() => {
                     openDeepLink(upiUrl);
