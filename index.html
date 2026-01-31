@@ -1174,7 +1174,114 @@
             .donation-grid{ grid-template-columns:1fr; }
             .bank-grid{ grid-template-columns:1fr; }
         }
-</style>
+
+        /* ===== Apple-glossy Donation Modal Overrides ===== */
+        .donation-modal-overlay{
+            background:
+              radial-gradient(1200px 700px at 20% 10%, rgba(99,102,241,0.22), transparent 60%),
+              radial-gradient(1000px 650px at 80% 20%, rgba(236,72,153,0.14), transparent 55%),
+              radial-gradient(900px 600px at 70% 85%, rgba(34,211,238,0.12), transparent 60%),
+              rgba(0,0,0,0.38) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .donation-modal{
+            background:
+              linear-gradient(135deg, rgba(246,247,251,0.92) 0%, rgba(238,242,255,0.88) 38%, rgba(248,250,252,0.92) 100%) !important;
+            border: 1px solid rgba(255,255,255,0.55) !important;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.28) !important;
+        }
+
+        .donation-topbar{
+            background: rgba(255,255,255,0.35) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.45) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .donation-card{
+            background: rgba(255,255,255,0.34) !important;
+            border: 1px solid rgba(255,255,255,0.55) !important;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        /* Softer borders + spacing feel */
+        .donation-grid{
+            gap: 26px !important;
+        }
+
+        /* Amount pills */
+        .donation-amount-btn{
+            background: rgba(255,255,255,0.42) !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.10) !important;
+            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+        }
+        .donation-amount-btn:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 14px 24px rgba(0,0,0,0.14) !important;
+        }
+        .donation-amount-btn.active{
+            background: linear-gradient(180deg, #c62828 0%, #8e0000 100%) !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.25) !important;
+            box-shadow: 0 16px 28px rgba(198,40,40,0.30) !important;
+        }
+
+        /* Premium buttons keeping temple colors */
+        .donation-pay-btn{
+            border: 1px solid rgba(0,0,0,0.10) !important;
+            box-shadow: 0 18px 30px rgba(0,0,0,0.14) !important;
+            transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+        }
+        .donation-pay-btn:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 22px 40px rgba(0,0,0,0.18) !important;
+            filter: brightness(1.02);
+        }
+        .donation-pay-btn:active{
+            transform: translateY(0px) scale(0.99);
+        }
+        .donation-pay-btn.phonepe{
+            background: linear-gradient(180deg, #6f2dbd 0%, #4a1d96 100%) !important;
+            box-shadow: 0 18px 34px rgba(111,45,189,0.28) !important;
+        }
+        .donation-pay-btn.upi{
+            background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.30) 100%) !important;
+            color: #8e0000 !important;
+        }
+
+        /* QR frame */
+        .donation-qr-frame{
+            background: rgba(255,255,255,0.55) !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.16) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Toast */
+        #donationToast{
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(0,0,0,0.55) !important;
+            border: 1px solid rgba(255,255,255,0.18) !important;
+        }
+
+        /* Better mobile fit */
+        @media (max-width: 820px){
+            .donation-modal{
+                border-radius: 22px !important;
+            }
+            .donation-topbar{
+                padding: 14px 14px !important;
+            }
+        }
+
+    </style>
 </head>
 <body>
     <!-- Header Top Section -->
@@ -2295,23 +2402,70 @@
             });
         });
 
-        // Optional: quick helper buttons (kept simple)
-        const payPhonePe = document.getElementById('payPhonePe');
-        const payUPI = document.getElementById('payUPI');
+        // PhonePe / UPI deep links (mobile only)
+        const payPhonePeBtn = document.getElementById('payPhonePe');
+        const payAnyUpiBtn = document.getElementById('payAnyUpi');
 
-        if (payPhonePe) {
-            payPhonePe.addEventListener('click', () => {
-                // Most reliable on web is to prompt user to scan QR / use UPI ID
-                alert('To pay via PhonePe: open PhonePe → Scan QR → scan the QR shown on the right.
-Selected Amount: ₹' + selectedAmount);
+        function isMobilePaymentDevice(){
+            const ua = navigator.userAgent || '';
+            const isMobileUA = /Android|iPhone|iPad|iPod/i.test(ua);
+            const isTouch = (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+            return isMobileUA || isTouch;
+        }
+
+        function openDeepLink(url){
+            // On mobile browsers, this will attempt to open the app that handles the scheme.
+            window.location.href = url;
+        }
+
+        if (payPhonePeBtn) {
+            payPhonePeBtn.addEventListener('click', () => {
+                const amount = getSelectedAmount();
+                if(!amount){
+                    showToast('Please select or enter an amount.');
+                    return;
+                }
+
+                // Desktop browsers (like Mac) usually cannot open UPI/PhonePe schemes.
+                if(!isMobilePaymentDevice()){
+                    showToast('PhonePe/UPI links open on phones. Please scan the QR or copy the UPI ID.');
+                    // scroll QR into view inside modal
+                    const qr = document.querySelector('.donation-qr-frame');
+                    if(qr) qr.scrollIntoView({behavior:'smooth', block:'center'});
+                    return;
+                }
+
+                const phonepeUrl = buildPhonePeUrl(amount);
+                const upiUrl = buildUpiUrl(amount);
+
+                // Try PhonePe first, then fallback to generic UPI
+                openDeepLink(phonepeUrl);
+                setTimeout(() => {
+                    openDeepLink(upiUrl);
+                }, 900);
             });
         }
 
-        if (payUPI) {
-            payUPI.addEventListener('click', () => {
-                alert('To pay with any UPI app: scan the QR shown on the right or send to UPI ID: omsrivenkatamba@upi
-Selected Amount: ₹' + selectedAmount);
+        if (payAnyUpiBtn) {
+            payAnyUpiBtn.addEventListener('click', () => {
+                const amount = getSelectedAmount();
+                if(!amount){
+                    showToast('Please select or enter an amount.');
+                    return;
+                }
+
+                if(!isMobilePaymentDevice()){
+                    showToast('UPI links open on phones. Please scan the QR or copy the UPI ID.');
+                    const qr = document.querySelector('.donation-qr-frame');
+                    if(qr) qr.scrollIntoView({behavior:'smooth', block:'center'});
+                    return;
+                }
+
+                const upiUrl = buildUpiUrl(amount);
+                openDeepLink(upiUrl);
             });
+        }
+);
         }
 
 
