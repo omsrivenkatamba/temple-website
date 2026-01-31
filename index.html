@@ -1029,7 +1029,33 @@
             background: rgba(255,255,255,0.26);
             color:#b31515;
         }
-        .donation-section-title{
+        
+        .donation-pay-btn.netbanking{
+            background: linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.28) 100%);
+            color:#111;
+            border: 1px solid rgba(0,0,0,0.10);
+        }
+        .donation-pay-btn.netbanking i{ color:#8e0000; }
+
+        .bank-link{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            text-decoration:none;
+            font-weight: 800;
+            background: rgba(255,255,255,0.40);
+            border: 1px solid rgba(0,0,0,0.08);
+            color:#111;
+            box-shadow: 0 12px 22px rgba(0,0,0,0.10);
+        }
+        .bank-link:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 16px 28px rgba(0,0,0,0.14);
+        }
+.donation-section-title{
             display:flex;
             align-items:center;
             gap: 10px;
@@ -2128,7 +2154,17 @@
                             </div>
 
                             <div class="donation-bank-grid">
-                                <div class="donation-field">
+                                
+
+                                <div class="donation-field donation-wide">
+                                    <small>Account Name</small>
+                                    <div class="value-row">
+                                        <div class="value">Bhagavathi Sri Venkatamba Temple</div>
+                                        <span style="opacity:0.55;">&nbsp;</span>
+                                    </div>
+                                </div>
+
+<div class="donation-field">
                                     <small>Account Number</small>
                                     <div class="value-row">
                                         <div class="value" id="bankAccountValue">6866890630</div>
@@ -2154,6 +2190,25 @@
                                         <div class="value">Indian Bank, Naidupet Branch</div>
                                         <span style="opacity:0.55;">&nbsp;</span>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="donation-card" id="netbankingSection" style="margin-top:18px;">
+                            <div class="donation-section-title"><i class="fas fa-building-columns"></i> NetBanking (Bank Transfer)</div>
+                            <div style="margin-top:10px;font-size:14px;line-height:1.5;">
+                                <div style="opacity:0.85;margin-bottom:10px;">
+                                    Use your bank’s NetBanking site to send an IMPS/NEFT transfer using the details above.
+                                </div>
+                                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+                                    <a class="bank-link" href="https://onlinesbi.sbi.bank.in/" target="_blank" rel="noopener">SBI OnlineSBI</a>
+                                    <a class="bank-link" href="https://netportal.hdfcbank.com/nb-login/epilogin.jsp" target="_blank" rel="noopener">HDFC NetBanking</a>
+                                    <a class="bank-link" href="https://retailnetbanking.icici.bank.in/" target="_blank" rel="noopener">ICICI NetBanking</a>
+                                    <a class="bank-link" href="https://www.axisbank.com/bank-smart/internet-banking" target="_blank" rel="noopener">Axis Internet Banking</a>
+                                </div>
+                                <div style="margin-top:12px;opacity:0.75;font-size:12.5px;">
+                                    Tip: If you’re on a phone, your bank app may handle NetBanking automatically after login.
                                 </div>
                             </div>
                         </div>
