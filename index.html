@@ -1414,6 +1414,50 @@
             }
         }
 
+    
+        /* ===== Extra mobile fixes (Android-friendly) ===== */
+        @media (max-width: 600px){
+            .donation-modal-overlay{ padding: 12px !important; }
+            .donation-modal{ max-height: 94vh !important; }
+            .donation-topbar{
+                padding: 12px 12px !important;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            .donation-topbar .center{
+                min-width: 0 !important;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .donation-body{ padding: 14px !important; }
+            .donation-card{
+                padding: 16px !important;
+                border-radius: 18px !important;
+            }
+            .donation-h1{ font-size: 28px !important; }
+            .donation-amount-btn{
+                width: calc(50% - 6px);
+                padding: 12px 14px;
+                text-align:center;
+            }
+            .donation-pay-row{
+                flex-direction: column;
+                gap: 12px;
+            }
+            .donation-pay-btn{
+                width: 100%;
+                min-width: 0 !important;
+            }
+            .donation-bank-grid{ grid-template-columns: 1fr !important; }
+            .donation-qr{ width: min(360px, 100%) !important; }
+            .donation-upi-row{ justify-content:center; text-align:center; }
+            .netbanking-row{ flex-direction: column; align-items: stretch; }
+            .netbanking-actions{ flex-direction: column; }
+            .receipt-actions{ flex-direction: column; }
+            /* prevent Android input zoom (keep >=16px) */
+            .netbanking-field input, .netbanking-field select{ font-size: 16px !important; }
+        }
+
     </style>
 </head>
 <body>
