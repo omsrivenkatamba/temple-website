@@ -1205,6 +1205,48 @@
 
         /* ===== Apple-glossy Donation Modal Overrides ===== */
 
+        .donation-option-row{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+        }
+        .donation-option-btn{
+            flex:1;
+            min-width: 240px;
+            text-align:left;
+            border-radius: 18px;
+            padding: 14px 16px;
+            border: 1px solid rgba(0,0,0,0.10);
+            background: rgba(255,255,255,0.35);
+            cursor:pointer;
+            box-shadow: 0 14px 26px rgba(0,0,0,0.12);
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .donation-option-btn:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 18px 34px rgba(0,0,0,0.16);
+        }
+        .donation-option-btn.active{
+            outline: 3px solid rgba(198,40,40,0.22);
+            border-color: rgba(198,40,40,0.35);
+        }
+        .donation-option-btn .opt-title{
+            font-weight: 900;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color:#111;
+            display:flex;
+            gap:10px;
+            align-items:center;
+        }
+        .donation-option-btn .opt-title i{ color:#8e0000; }
+        .donation-option-btn .opt-sub{
+            margin-top:6px;
+            font-size: 12.5px;
+            opacity: 0.78;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
         /* QR + UPI row readability */
         .donation-upi-row{
             flex-wrap: wrap;
@@ -2252,57 +2294,70 @@
 
             <div class="donation-body">
                 <div class="donation-grid">
+                    
                     <!-- LEFT CARD -->
-                    <div class="donation-card">
-                        <h2 class="donation-h1">Support Our Activities</h2>
+                    <div class="donation-card" id="donationLeftCard">
+                        <h2 class="donation-h1" style="font-size:34px;">Donate Options</h2>
                         <p class="donation-p">
-                            Your donations help us continue our spiritual and community services.
-                            Choose an amount to donate via UPI or PhonePe.
+                            Choose a payment method below. “Scan to Donate” remains available on the right side anytime.
                         </p>
 
                         <div class="donation-divider"></div>
 
-                        <div class="donation-label">Select Amount (INR)</div>
+                        <!-- Option buttons -->
+                        <div class="donation-option-row">
+                            <button class="donation-option-btn" id="optUpi" type="button">
+                                <div class="opt-title"><i class="fas fa-mobile-screen-button"></i> PhonePe / Any UPI</div>
+                                <div class="opt-sub">Pay using a UPI app (best on Android)</div>
+                            </button>
 
-                        <div class="donation-amount-row">
-                            <div class="donation-custom" title="Custom amount">
-                                <input id="donationCustomAmount" inputmode="numeric" placeholder="₹" aria-label="Custom amount">
-                            </div>
-
-                            <button class="donation-amount-btn" data-amount="101" type="button">₹101</button>
-                            <button class="donation-amount-btn" data-amount="251" type="button">₹251</button>
-                            <button class="donation-amount-btn active" data-amount="501" type="button">₹501</button>
-                            <button class="donation-amount-btn" data-amount="1001" type="button">₹1001</button>
-                            <button class="donation-amount-btn" data-amount="2001" type="button">₹2001</button>
-                            <button class="donation-amount-btn" data-amount="5001" type="button">₹5001</button>
+                            <button class="donation-option-btn" id="optBank" type="button">
+                                <div class="opt-title"><i class="fas fa-university"></i> Direct Bank Transfer</div>
+                                <div class="opt-sub">IMPS / NEFT / RTGS + NetBanking</div>
+                            </button>
                         </div>
 
-                        <div class="donation-pay-row">
-                            <button class="donation-pay-btn phonepe" id="payPhonePe" type="button">
-                                <span style="font-weight:900;">PhonePe</span>
-                                <span style="opacity:0.9;">Pay via PhonePe</span>
-                            </button>
+                        <!-- Details panels (hidden until option is chosen) -->
+                        <div id="upiPanel" style="display:none; margin-top:18px;">
+                            <div class="donation-label">Select Amount (INR)</div>
 
-                            <button class="donation-pay-btn upi" id="payAnyUpi" type="button">
-                                <i class="fas fa-qrcode"></i>
-                                <span>Any UPI App</span>
-                            </button>
-                        
-        <div class="donation-center-text" style="margin-top:10px;font-size:13px;opacity:0.8;">
-            📱 PhonePe / UPI app buttons work on Android phones. On iPhone & Mac, please scan the QR code.
-        </div>
+                            <div class="donation-amount-row">
+                                <div class="donation-custom" title="Custom amount">
+                                    <input id="donationCustomAmount" inputmode="numeric" placeholder="₹" aria-label="Custom amount">
+                                </div>
 
-</div>
+                                <button class="donation-amount-btn" data-amount="101" type="button">₹101</button>
+                                <button class="donation-amount-btn" data-amount="251" type="button">₹251</button>
+                                <button class="donation-amount-btn active" data-amount="501" type="button">₹501</button>
+                                <button class="donation-amount-btn" data-amount="1001" type="button">₹1001</button>
+                                <button class="donation-amount-btn" data-amount="2001" type="button">₹2001</button>
+                                <button class="donation-amount-btn" data-amount="5001" type="button">₹5001</button>
+                            </div>
 
-                        <div class="donation-card" style="margin-top:18px;">
+                            <div class="donation-pay-row">
+                                <button class="donation-pay-btn phonepe" id="payPhonePe" type="button">
+                                    <span style="font-weight:900;">PhonePe</span>
+                                    <span style="opacity:0.9;">Pay via PhonePe</span>
+                                </button>
+
+                                <button class="donation-pay-btn upi" id="payAnyUpi" type="button">
+                                    <i class="fas fa-qrcode"></i>
+                                    <span>Any UPI App</span>
+                                </button>
+                            </div>
+
+                            <div class="donation-center-text" style="margin-top:10px;font-size:13px;opacity:0.8;">
+                                📱 PhonePe / UPI buttons work best on Android phones. On iPhone &amp; Mac, please scan the QR code on the right.
+                            </div>
+                        </div>
+
+                        <div id="bankPanel" style="display:none; margin-top:18px;">
                             <div class="donation-section-title">
                                 <i class="fas fa-university"></i>
                                 <span>Direct Bank Transfer</span>
                             </div>
 
                             <div class="donation-bank-grid">
-                                
-
                                 <div class="donation-field donation-wide">
                                     <small>Account Name</small>
                                     <div class="value-row">
@@ -2311,7 +2366,7 @@
                                     </div>
                                 </div>
 
-<div class="donation-field">
+                                <div class="donation-field">
                                     <small>Account Number</small>
                                     <div class="value-row">
                                         <div class="value" id="bankAccountValue">6866890630</div>
@@ -2339,12 +2394,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                            <div class="donation-divider" style="margin-top:16px;"></div>
 
-                        
-                        
-                        <div class="donation-card" id="netbankingSection" style="margin-top:18px;">
                             <div class="donation-section-title"><i class="fas fa-building-columns"></i> NetBanking (Bank Transfer)</div>
                             <div class="donation-divider"></div>
 
@@ -2366,56 +2418,21 @@
                                     </div>
 
                                     <div class="netbanking-row" style="margin-top:12px;">
-
                                         <div class="netbanking-field" style="flex:1;min-width:260px;">
                                             <label for="donorUTR">Reference / UTR Number</label>
                                             <input id="donorUTR" type="text" placeholder="UTR / Reference No. (after transfer)">
                                         </div>
-
                                         <div class="netbanking-field" style="flex:1;min-width:260px;">
                                             <label for="donorEmail">Email</label>
                                             <input id="donorEmail" type="email" placeholder="name@example.com" autocomplete="email">
                                         </div>
+                                    </div>
+
+                                    <div class="netbanking-row" style="margin-top:12px;">
                                         <div class="netbanking-field" style="flex:1;min-width:260px;">
                                             <label for="bankSelect">Select Bank</label>
                                             <select id="bankSelect" aria-label="Select bank for netbanking">
                                                 <option value="" selected disabled>-- Select your bank --</option>
-                                            <option value="0">State Bank of India (SBI)</option>
-                                            <option value="1">HDFC Bank</option>
-                                            <option value="2">ICICI Bank</option>
-                                            <option value="3">Axis Bank</option>
-                                            <option value="4">Kotak Mahindra Bank</option>
-                                            <option value="5">Punjab National Bank (PNB)</option>
-                                            <option value="6">Bank of Baroda</option>
-                                            <option value="7">Canara Bank</option>
-                                            <option value="8">Union Bank of India</option>
-                                            <option value="9">Indian Bank</option>
-                                            <option value="10">IDBI Bank</option>
-                                            <option value="11">Bank of India</option>
-                                            <option value="12">Central Bank of India</option>
-                                            <option value="13">UCO Bank</option>
-                                            <option value="14">Bank of Maharashtra</option>
-                                            <option value="15">Indian Overseas Bank</option>
-                                            <option value="16">Punjab & Sind Bank</option>
-                                            <option value="17">Yes Bank</option>
-                                            <option value="18">IndusInd Bank</option>
-                                            <option value="19">IDFC FIRST Bank</option>
-                                            <option value="20">Federal Bank</option>
-                                            <option value="21">RBL Bank</option>
-                                            <option value="22">AU Small Finance Bank</option>
-                                            <option value="23">Bandhan Bank</option>
-                                            <option value="24">South Indian Bank</option>
-                                            <option value="25">Karnataka Bank</option>
-                                            <option value="26">Karur Vysya Bank</option>
-                                            <option value="27">City Union Bank</option>
-                                            <option value="28">Dhanlaxmi Bank</option>
-                                            <option value="29">Jammu & Kashmir Bank</option>
-                                            <option value="30">Tamilnad Mercantile Bank</option>
-                                            <option value="31">CSB Bank</option>
-                                            <option value="32">Nainital Bank</option>
-                                            <option value="33">HSBC India</option>
-                                            <option value="34">Standard Chartered Bank India</option>
-                                            <option value="35">Citibank India</option>
                                             </select>
                                         </div>
                                     </div>
@@ -2433,11 +2450,10 @@
 
                                     <div class="netbanking-note">
                                         After transfer, click <b>I completed the transfer</b> to generate a receipt text you can send to the temple (WhatsApp / Email).
-                                        (Automatic sending isn’t possible from a static GitHub Pages site.)
                                     </div>
 
                                     <div class="receipt-box" id="receiptBox" style="display:none;">
-                                        <div style="font-weight:900;margin-bottom:8px;">Receipt (copy & send)</div>
+                                        <div style="font-weight:900;margin-bottom:8px;">Receipt (copy &amp; send)</div>
                                         <textarea id="receiptText" readonly></textarea>
                                         <div class="receipt-actions">
                                             <button class="donation-pay-btn upi" id="copyReceipt" type="button">
@@ -2452,34 +2468,17 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div style="margin-top:14px;opacity:0.9;font-weight:800;">Popular quick links</div>
-                                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px;">
-                                    <a class="bank-link" href="https://www.google.com/search?q=State+Bank+of+India+netbanking+login" target="_blank" rel="noopener">SBI NetBanking</a>
-                                    <a class="bank-link" href="https://www.google.com/search?q=HDFC+netbanking+login" target="_blank" rel="noopener">HDFC NetBanking</a>
-                                    <a class="bank-link" href="https://www.google.com/search?q=ICICI+netbanking+login" target="_blank" rel="noopener">ICICI NetBanking</a>
-                                    <a class="bank-link" href="https://www.google.com/search?q=Axis+Bank+netbanking+login" target="_blank" rel="noopener">Axis NetBanking</a>
-                                </div>
                             </div>
                         </div>
 
-<div style="margin-top:14px;opacity:0.9;font-weight:800;">Popular quick links</div>
-                                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px;">
-                                    <a class="bank-link" href="https://www.google.com/search?q=State+Bank+of+India+netbanking+login" target="_blank" rel="noopener">SBI NetBanking</a>
-                                    <a class="bank-link" href="https://www.google.com/search?q=HDFC+netbanking+login" target="_blank" rel="noopener">HDFC NetBanking</a>
-                                    <a class="bank-link" href="https://www.google.com/search?q=ICICI+netbanking+login" target="_blank" rel="noopener">ICICI NetBanking</a>
-                                    <a class="bank-link" href="https://www.google.com/search?q=Axis+Bank+netbanking+login" target="_blank" rel="noopener">Axis NetBanking</a>
-                                </div>
-                            </div>
-                        </div>
-
-</div>
-
-                        <div class="donation-footnote">
+                        <div class="donation-footnote" style="margin-top:16px;">
                             <i class="fas fa-check-circle"></i>
                             <div>All donations are used for Temple Seva, Annadanam, and spiritual activities.</div>
                         </div>
+
+                        <button id="closeModalBtn" class="donate-btn" style="margin-top: 18px; width: 100%;">Close</button>
                     </div>
+
 
                     <!-- RIGHT COLUMN -->
                     <div style="display:flex;flex-direction:column;gap:22px;">
@@ -3041,10 +3040,24 @@
                 setTimeout(() => { toast.style.display = 'none'; }, 2200);
             }
 
+            
+            function resetDonationOptions(){
+                const optUpi = document.getElementById('optUpi');
+                const optBank = document.getElementById('optBank');
+                const upiPanel = document.getElementById('upiPanel');
+                const bankPanel = document.getElementById('bankPanel');
+
+                if(optUpi) optUpi.classList.remove('active');
+                if(optBank) optBank.classList.remove('active');
+                if(upiPanel) upiPanel.style.display = 'none';
+                if(bankPanel) bankPanel.style.display = 'none';
+            }
+
             function openDonationModal(){
                 if(!donationModal) return;
                 donationModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+                resetDonationOptions();
                 // default selected amount
                 setSelectedAmount(getSelectedAmount() || 501);
             }
@@ -3053,6 +3066,7 @@
                 if(!donationModal) return;
                 donationModal.style.display = 'none';
                 document.body.style.overflow = '';
+                resetDonationOptions();
             }
 
             function getSelectedAmount(){
@@ -3389,6 +3403,53 @@
 
             updateNetbankingButtons();
         });
+
+
+        // ===== Option selection (UPI vs Bank) =====
+        const optUpi = document.getElementById('optUpi');
+        const optBank = document.getElementById('optBank');
+        const upiPanel = document.getElementById('upiPanel');
+        const bankPanel = document.getElementById('bankPanel');
+
+        function setActiveOption(which){
+            if(!optUpi || !optBank || !upiPanel || !bankPanel) return;
+            if(which === 'upi'){
+                optUpi.classList.add('active');
+                optBank.classList.remove('active');
+                upiPanel.style.display = 'block';
+                bankPanel.style.display = 'none';
+                upiPanel.scrollIntoView({behavior:'smooth', block:'start'});
+            }else if(which === 'bank'){
+                optBank.classList.add('active');
+                optUpi.classList.remove('active');
+                bankPanel.style.display = 'block';
+                upiPanel.style.display = 'none';
+                bankPanel.scrollIntoView({behavior:'smooth', block:'start'});
+            }
+        }
+
+        if(optUpi){ optUpi.addEventListener('click', () => setActiveOption('upi')); }
+        if(optBank){ optBank.addEventListener('click', () => setActiveOption('bank')); }
+
+        // Populate bank dropdown options (kept in JS to avoid huge HTML)
+        const bankSelectEl = document.getElementById('bankSelect');
+        if(bankSelectEl && bankSelectEl.options.length <= 1){
+            const banks = [
+                "State Bank of India (SBI)","HDFC Bank","ICICI Bank","Axis Bank","Kotak Mahindra Bank",
+                "Punjab National Bank (PNB)","Bank of Baroda","Canara Bank","Union Bank of India","Indian Bank",
+                "IDBI Bank","Bank of India","Central Bank of India","UCO Bank","Bank of Maharashtra",
+                "Indian Overseas Bank","Punjab & Sind Bank","Yes Bank","IndusInd Bank","IDFC FIRST Bank",
+                "Federal Bank","RBL Bank","AU Small Finance Bank","Bandhan Bank","South Indian Bank",
+                "Karnataka Bank","Karur Vysya Bank","City Union Bank","Dhanlaxmi Bank","Jammu & Kashmir Bank",
+                "Tamilnad Mercantile Bank","CSB Bank","Nainital Bank","HSBC India","Standard Chartered Bank India","Citibank India"
+            ];
+            banks.forEach((b, i) => {
+                const opt = document.createElement('option');
+                opt.value = String(i+1);
+                opt.textContent = b;
+                bankSelectEl.appendChild(opt);
+            });
+        }
 
 </script>
 
