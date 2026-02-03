@@ -1025,7 +1025,6 @@
         }
         .donation-pay-btn.upi{
             border: 1px solid rgba(198,40,40,0.25);
-
             background: rgba(255,255,255,0.26);
             color:#b31515;
         }
@@ -1055,7 +1054,7 @@
             transform: translateY(-1px);
             box-shadow: 0 16px 28px rgba(0,0,0,0.14);
         }
-.donation-section-title{
+        .donation-section-title{
             display:flex;
             align-items:center;
             gap: 10px;
@@ -1192,19 +1191,6 @@
             display:none;
         }
 
-        @media (max-width: 900px){
-            .donation-grid{ grid-template-columns: 1fr; }
-            .donation-h1{ font-size: 34px; }
-            .donation-bank-grid{ grid-template-columns: 1fr; }
-            .donation-pay-btn{ min-width: 180px; }
-        }
-@media (max-width: 900px){
-            .donation-grid{ grid-template-columns:1fr; }
-            .bank-grid{ grid-template-columns:1fr; }
-        }
-
-        /* ===== Apple-glossy Donation Modal Overrides ===== */
-
         .donation-option-row{
             display:flex;
             gap:12px;
@@ -1246,19 +1232,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-
-        /* QR + UPI row readability */
-        .donation-upi-row{
-            flex-wrap: wrap;
-        }
-        .donation-upi-row span{
-            word-break: break-word;
-        }
-        .donation-qr{
-            width: min(380px, 100%) !important;
-        }
-
-        /* NetBanking LOV + Donor form */
         .netbanking-form{
             background: rgba(255,255,255,0.28);
             border: 1px solid rgba(0,0,0,0.08);
@@ -1321,7 +1294,6 @@
             margin-top:10px;
         }
 
-
         .netbanking-row{
             display:flex;
             gap:12px;
@@ -1349,19 +1321,15 @@
             filter: none !important;
         }
 
+        /* Premium styling */
         .donation-modal-overlay{
-            background:
-              radial-gradient(1200px 700px at 20% 10%, rgba(99,102,241,0.22), transparent 60%),
-              radial-gradient(1000px 650px at 80% 20%, rgba(236,72,153,0.14), transparent 55%),
-              radial-gradient(900px 600px at 70% 85%, rgba(34,211,238,0.12), transparent 60%),
-              rgba(0,0,0,0.38) !important;
+            background: rgba(0,0,0,0.38) !important;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
 
         .donation-modal{
-            background:
-              linear-gradient(135deg, rgba(246,247,251,0.92) 0%, rgba(238,242,255,0.88) 38%, rgba(248,250,252,0.92) 100%) !important;
+            background: linear-gradient(135deg, rgba(246,247,251,0.92) 0%, rgba(238,242,255,0.88) 38%, rgba(248,250,252,0.92) 100%) !important;
             border: 1px solid rgba(255,255,255,0.55) !important;
             box-shadow: 0 30px 80px rgba(0,0,0,0.28) !important;
         }
@@ -1424,7 +1392,6 @@
         }
         .donation-pay-btn.upi{
             border: 1px solid rgba(198,40,40,0.25);
-
             background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.30) 100%) !important;
             color: #8e0000 !important;
         }
@@ -1447,17 +1414,14 @@
         }
 
         /* Better mobile fit */
-        @media (max-width: 820px){
-            .donation-modal{
-                border-radius: 22px !important;
-            }
-            .donation-topbar{
-                padding: 14px 14px !important;
-            }
+        @media (max-width: 900px){
+            .donation-grid{ grid-template-columns: 1fr; }
+            .donation-h1{ font-size: 34px; }
+            .donation-bank-grid{ grid-template-columns: 1fr; }
+            .donation-pay-btn{ min-width: 180px; }
         }
 
-    
-        /* ===== Extra mobile fixes (Android-friendly) ===== */
+        /* ===== Extra mobile fixes ===== */
         @media (max-width: 600px){
             .donation-modal-overlay{ padding: 12px !important; }
             .donation-modal{ max-height: 94vh !important; }
@@ -1496,7 +1460,7 @@
             .netbanking-row{ flex-direction: column; align-items: stretch; }
             .netbanking-actions{ flex-direction: column; }
             .receipt-actions{ flex-direction: column; }
-            /* prevent Android input zoom (keep >=16px) */
+            /* prevent Android input zoom */
             .netbanking-field input, .netbanking-field select{ font-size: 16px !important; }
         }
 
@@ -2268,8 +2232,13 @@
                     </div>
                     <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
                         <img src="images/01-main-slide/01-main-slide6.jpg" alt="Temple View 3" style="width: 100%; height: 200px; object-fit: cover;">
-                    
-    <!-- Donation Modal (Option B - Full Donation Screen) -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
     <div class="donation-modal-overlay" id="donationModal" role="dialog" aria-label="Donation" aria-modal="true">
         <div class="donation-modal">
             <div class="donation-topbar">
@@ -2299,7 +2268,7 @@
                     <div class="donation-card" id="donationLeftCard">
                         <h2 class="donation-h1" style="font-size:34px;">Donate Options</h2>
                         <p class="donation-p">
-                            Choose a payment method below. “Scan to Donate” remains available on the right side anytime.
+                            Choose a payment method below. "Scan to Donate" remains available on the right side anytime.
                         </p>
 
                         <div class="donation-divider"></div>
@@ -2325,8 +2294,6 @@
 
                         <!-- Details panels (hidden until option is chosen) -->
                         <div id="upiPanel" style="display:none; margin-top:18px;">
-                            <a id="upiLauncher" href="#" style="display:none;"></a>
-                            <a id="phonepeLauncher" href="#" style="display:none;"></a>
                             <div class="donation-label">Select Amount (INR)</div>
 
                             <div class="donation-amount-row">
@@ -2402,17 +2369,15 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="donation-divider" style="margin-top:16px;"></div>
-
-                            
                         <div id="netPanel" style="display:none; margin-top:18px;">
                             <div class="donation-section-title"><i class="fas fa-building-columns"></i> NetBanking (Bank Transfer)</div>
                             <div class="donation-divider"></div>
 
                             <div style="margin-top:10px;font-size:14px;line-height:1.5;">
                                 <div style="opacity:0.85;margin-bottom:12px;">
-                                    Select your bank + enter donor details. Then click <b>Open NetBanking</b> to go to your bank’s login page and complete the transfer.
+                                    Select your bank + enter donor details. Then click <b>Open NetBanking</b> to go to your bank's login page and complete the transfer.
                                 </div>
 
                                 <div class="netbanking-form">
@@ -2481,10 +2446,7 @@
                             </div>
                         </div>
 
-                        
-                        </div>
-
-<div class="donation-footnote" style="margin-top:16px;">
+                        <div class="donation-footnote" style="margin-top:16px;">
                             <i class="fas fa-check-circle"></i>
                             <div>All donations are used for Temple Seva, Annadanam, and spiritual activities.</div>
                         </div>
@@ -2535,1231 +2497,58 @@
 
         <div class="donation-toast" id="donationToast">Opening your UPI app…</div>
     </div>
-                               </div>
-                                </div>
 
-                                <div class="field bank-wide">
-                                    <small>Bank & Branch</small>
-                                    <div class="field-row" style="justify-content:flex-start;">
-                                        <span>Indian Bank, Naidupet Branch</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="donation-footnote">
-                            <i class="fa-solid fa-circle-check" style="color:#1b5e20;margin-top:3px;"></i>
-                            <div>All donations are used for Temple Seva, Annadanam, and spiritual activities.</div>
-                        </div>
-
-                        <button id="closeModalBtn" class="donate-btn" style="margin-top: 18px; width: 100%;">Close</button>
-                    </div>
-
-                    <!-- Right: QR + Help -->
-                    <div class="qr-wrap">
-                        <div class="donation-card qr-box">
-                            <h2 class="donation-title" style="font-size:1.8rem;">Scan to Donate</h2>
-                            <p class="donation-subtitle">Scan this QR code with any UPI app</p>
-
-                            <div class="qr-frame">
-                                <img src="images/01-main-slide/donation-qr2.png" alt="Scan to Donate QR" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto;">
-                            </div>
-
-                            <div class="upi-row">
-                                <i class="fa-solid fa-qrcode"></i>
-                                <span id="upiIdText">omsrivenkatamba@upi</span>
-                                <button type="button" class="copy-btn" data-copy="omsrivenkatamba@upi" aria-label="Copy UPI ID">
-                                    <i class="fa-regular fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="donation-card help-box">
-                            <h3 class="help-title">Need Help?</h3>
-                            <div style="color:rgba(0,0,0,0.7); font-weight:700;">
-                                If you face any issues with the payment or need more information, please reach out to us:
-                            </div>
-
-                            <div class="help-item">
-                                <i class="fa-solid fa-phone" style="color:#b71c1c;"></i>
-                                <span>+91 8309 545 660</span>
-                            </div>
-
-                            <div class="help-item">
-                                <i class="fa-solid fa-envelope" style="color:#b71c1c;"></i>
-                                <span>omsrivenkatamba@gmail.com</span>
-                            </div>
-                        </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Bhagavathi Sri Venkatamba</h3>
+                    <p class="telugu-text">శ్రీ వేంకటాంబ మందిరం</p>
+                    <p>A divine abode for spiritual seekers and devotees. Our temple serves as a center for community service, spiritual growth, and cultural preservation.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/BhagavathiSriVenkatamba" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/watch?v=N1EOF1RwuO4" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="mailto:omsrivenkatamba@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#activities">Recent Activities</a></li>
+                        <li><a href="#committee">Committee</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Karaballavolu Village, Ozili Mandal, Nellore District - 524401, Andhra Pradesh</li>
+                        <li><i class="fas fa-phone"></i> +91 8309 545 660</li>
+                        <li><i class="fas fa-envelope"></i> omsrivenkatamba@gmail.com</li>
+                        <li><i class="fas fa-id-card"></i> Registration No: 1/BKIV/2020</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Bhagavathi Sri Venkatamba Temple. All Rights Reserved.</p>
+                <p style="margin-top: 5px;">80G Approved | Darpan Approved | FCRA Approved</p>
             </div>
         </div>
-    </div>
-
-<script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-        });
-        
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        menuOverlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        });
-        
-        mobileDropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                const dropdownMenu = toggle.nextElementSibling;
-                dropdownMenu.classList.toggle('active');
-                
-                const icon = toggle.querySelector('i');
-                if (icon.classList.contains('fa-chevron-down')) {
-                    icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-                } else {
-                    icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-                }
-            });
-        });
-        
-        // Image Slider
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[n].classList.add('active');
-        }
-        
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-        
-        // Auto slide every 5 seconds
-        setInterval(nextSlide, 5000);
-        
-        
-        // Donation Modal (Option B - Full Donation Screen)
-        const donationModal = document.getElementById('donationModal');
-        const closeModal = document.getElementById('closeModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const customAmountInput = document.getElementById('customAmount');
-        const amountPills = document.querySelectorAll('.amount-pill');
-        const copyButtons = document.querySelectorAll('[data-copy]');
-
-        let selectedAmount = 501;
-
-        function openDonationModal(e) {
-            if (e) e.preventDefault();
-            if (!donationModal) return;
-            donationModal.style.display = 'flex';
-            donationModal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeDonationModal() {
-            if (!donationModal) return;
-            donationModal.style.display = 'none';
-            donationModal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-        }
-
-        // Open from ANY button/link that has data-open-donation="true"
-        document.querySelectorAll('[data-open-donation="true"]').forEach(el => {
-            el.addEventListener('click', openDonationModal);
-        });
-
-        if (closeModal) closeModal.addEventListener('click', closeDonationModal);
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeDonationModal);
-
-        // Close when clicking outside modal box
-        if (donationModal) {
-            donationModal.addEventListener('click', (e) => {
-                if (e.target === donationModal) closeDonationModal();
-            });
-        }
-
-        // Escape key closes modal
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && donationModal && donationModal.style.display === 'flex') {
-                closeDonationModal();
-            }
-        });
-
-        // Amount selection
-        amountPills.forEach(pill => {
-            pill.addEventListener('click', () => {
-                amountPills.forEach(p => p.classList.remove('active'));
-                pill.classList.add('active');
-                selectedAmount = Number(pill.getAttribute('data-amount') || 0) || selectedAmount;
-                if (customAmountInput) customAmountInput.value = '';
-            });
-        });
-
-        if (customAmountInput) {
-            customAmountInput.addEventListener('input', () => {
-                const v = Number(customAmountInput.value || 0);
-                if (v > 0) {
-                    amountPills.forEach(p => p.classList.remove('active'));
-                    selectedAmount = v;
-                }
-            });
-        }
-
-        // Copy helpers
-        copyButtons.forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const text = btn.getAttribute('data-copy') || '';
-                if (!text) return;
-                try {
-                    await navigator.clipboard.writeText(text);
-                    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-                    setTimeout(() => { btn.innerHTML = '<i class="fa-regular fa-copy"></i>'; }, 900);
-                } catch (err) {
-                    // fallback
-                    const ta = document.createElement('textarea');
-                    ta.value = text;
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
-                }
-            });
-        });
-
-        // PhonePe / UPI deep links (mobile only)
-        const payPhonePeBtn = document.getElementById('payPhonePe');
-        const payAnyUpiBtn = document.getElementById('payAnyUpi');
-
-        function isMobilePaymentDevice(){
-            const ua = navigator.userAgent || '';
-            const isMobileUA = /Android|iPhone|iPad|iPod/i.test(ua);
-            const isTouch = (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
-            return isMobileUA || isTouch;
-        }
-
-        function openDeepLink(url){
-            // On mobile browsers, this will attempt to open the app that handles the scheme.
-            window.location.href = url;
-        }
-
-        if (payPhonePeBtn) {
-            payPhonePeBtn.addEventListener('click', () => {
-                const amount = getSelectedAmount();
-                if(!amount){
-                    showToast('Please select or enter an amount.');
-                    return;
-                }
-
-                // Desktop browsers (like Mac) usually cannot open UPI/PhonePe schemes.
-                if(!isMobilePaymentDevice()){
-                    showToast('PhonePe/UPI links open on phones. Please scan the QR or copy the UPI ID.');
-                    // scroll QR into view inside modal
-                    const qr = document.querySelector('.donation-qr-frame');
-                    if(qr) qr.scrollIntoView({behavior:'smooth', block:'center'});
-                    return;
-                }
-
-                const phonepeUrl = buildPhonePeUrl(amount);
-                const upiUrl = buildUpiUrl(amount);
-
-                // Try PhonePe first, then fallback to generic UPI
-                
-                showToast('PhonePe app deep links are blocked on iPhone & Mac browsers. Please scan the QR or use Any UPI App on Android.');
-
-                openDeepLink(phonepeUrl);
-                setTimeout(() => {
-                    openDeepLink(upiUrl);
-                }, 900);
-            });
-        }
-
-        if (payAnyUpiBtn) {
-            payAnyUpiBtn.addEventListener('click', () => {
-                const amount = getSelectedAmount();
-                if(!amount){
-                    showToast('Please select or enter an amount.');
-                    return;
-                }
-
-                if(!isMobilePaymentDevice()){
-                    showToast('UPI links open on phones. Please scan the QR or copy the UPI ID.');
-                    const qr = document.querySelector('.donation-qr-frame');
-                    if(qr) qr.scrollIntoView({behavior:'smooth', block:'center'});
-                    return;
-                }
-
-                const upiUrl = buildUpiUrl(amount);
-                openDeepLink(upiUrl);
-            });
-        }
-);
-        }
-
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // Don't prevent default for actual page sections
-                if (href === '#home' || href === '#about' || href === '#services' || 
-                    href === '#activities' || href === '#committee' || href === '#contact') {
-                    e.preventDefault();
-                    
-                    // Close mobile menu if open
-                    mobileMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    
-                    const targetId = href.substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
-        // Contact Form Submission with Formspree
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Show loading state
-                const submitBtn = this.querySelector('.submit-btn');
-                const originalBtnText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                submitBtn.disabled = true;
-                
-                // Prepare form data
-                const formData = new FormData(this);
-                
-                try {
-                    // Send to Formspree
-                    const response = await fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        // Success - show message
-                        formMessage.style.display = 'block';
-                        formMessage.innerHTML = `
-                            <div style="padding: 15px; border-radius: 5px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
-                                <i class="fas fa-check-circle" style="margin-right: 10px; color: #28a745;"></i>
-                                <strong>✅ Message Sent Successfully!</strong><br>
-                                Thank you <strong>${name}</strong>! Your message has been sent to:<br>
-                                ✉️ Email: <strong>omsrivenkatamba@gmail.com</strong><br>
-                                📱 SMS: <strong>+91 8309 545 660</strong><br>
-                                We will contact you soon at ${phone || email}.
-                            </div>
-                        `;
-                        
-                        // Scroll to show message
-                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        
-                        // Show success alert
-                        alert(`✅ MESSAGE SENT SUCCESSFULLY!\n\n📨 Email sent to: omsrivenkatamba@gmail.com\n📱 SMS sent to: +91 8309 545 660\n\nThank you ${name}! The temple committee will contact you soon.`);
-                        
-                        // Reset form after 3 seconds
-                        setTimeout(() => {
-                            this.reset();
-                            // Hide message after 5 seconds
-                            setTimeout(() => {
-                                formMessage.style.display = 'none';
-                            }, 5000);
-                        }, 3000);
-                        
-                        // Log for debugging
-                        console.log('✅ Form submitted successfully to Formspree!');
-                        console.log('📨 Email sent to: omsrivenkatamba@gmail.com');
-                        console.log('📱 SMS notification to: +91 8309 545 660');
-                        console.log('📝 Message details:', { name, email, phone, subject, message });
-                        
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
-                    
-                } catch (error) {
-                    // Error handling
-                    formMessage.style.display = 'block';
-                    formMessage.innerHTML = `
-                        <div style="padding: 15px; border-radius: 5px; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
-                            <i class="fas fa-exclamation-circle" style="margin-right: 10px; color: #dc3545;"></i>
-                            <strong>❌ Error Sending Message!</strong><br>
-                            Please try again or contact us directly:<br>
-                            📞 +91 8309 545 660<br>
-                            ✉️ omsrivenkatamba@gmail.com
-                        </div>
-                    `;
-                    
-                    console.error('❌ Form submission error:', error);
-                    
-                } finally {
-                    // Reset button
-                    submitBtn.innerHTML = originalBtnText;
-                    submitBtn.disabled = false;
-                }
-            });
-        }
-        
-        // Test function for development
-        function testFormSubmission() {
-            if (contactForm) {
-                // Fill with test data
-                document.getElementById('name').value = 'Test User';
-                document.getElementById('email').value = 'test@example.com';
-                document.getElementById('phone').value = '+91 9876543210';
-                document.getElementById('subject').value = 'Test Message from Website';
-                document.getElementById('message').value = 'This is a test message to verify the contact form is working properly. Please ignore this message.';
-                
-                // Show test mode alert
-                alert('🧪 TEST MODE ACTIVATED\n\nThis will simulate a form submission.\nIn production, messages go to:\n📧 omsrivenkatamba@gmail.com\n📱 +91 8309 545 660');
-                
-                // Submit form
-                contactForm.dispatchEvent(new Event('submit'));
-            }
-        }
-        
-        // Add test button for development (remove in production)
-        const testButton = document.createElement('button');
-        testButton.innerHTML = '<i class="fas fa-vial"></i> Test Form';
-        testButton.style.cssText = `
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            background: var(--primary-red);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(198, 40, 40, 0.3);
-        `;
-        testButton.addEventListener('click', testFormSubmission);
-        document.body.appendChild(testButton);
-        
-        // Initialize the page based on URL hash
-        window.addEventListener('load', () => {
-            const hash = window.location.hash;
-            if (hash) {
-                const targetElement = document.getElementById(hash.substring(1));
-                if (targetElement) {
-                    setTimeout(() => {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }, 500);
-                }
-            }
-        });
-        
-        // Add hover effect to committee cards
-        document.querySelectorAll('.committee-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
-            });
-        });
-        
-        // Form validation styling
-        const formInputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('input', function() {
-                if (this.value.trim() !== '') {
-                    this.style.borderColor = '#28a745';
-                    this.style.boxShadow = '0 0 0 2px rgba(40, 167, 69, 0.1)';
-                } else {
-                    this.style.borderColor = '#ddd';
-                    this.style.boxShadow = 'none';
-                }
-            });
-            
-            input.addEventListener('blur', function() {
-                if (this.hasAttribute('required') && this.value.trim() === '') {
-                    this.style.borderColor = '#dc3545';
-                    this.style.boxShadow = '0 0 0 2px rgba(220, 53, 69, 0.1)';
-                }
-            });
-        });
-    
-
-        // =========================
-        // Donation Modal (Pixel-perfect + UPI Deep Links)
-        // =========================
-        (function(){
-            const donationModal = document.getElementById('donationModal');
-            const closeBtn = document.getElementById('closeDonationModal');
-            const backBtn = document.getElementById('donationBackBtn');
-
-            const headerDonateBtn = document.getElementById('donateBtn');
-            const homeDonateBtn = document.getElementById('homeDonateBtn'); // some pages may not have it
-            const mobileDonateLinks = document.querySelectorAll('.mobile-nav-menu a[href="#donate"], .mobile-nav-menu a.donate-btn');
-
-            const amountBtns = document.querySelectorAll('.donation-amount-btn');
-            const customAmount = document.getElementById('donationCustomAmount');
-
-            const payPhonePe = document.getElementById('payPhonePe');
-            const payAnyUpi = document.getElementById('payAnyUpi');
-
-            const upiId = 'omsrivenkatamba@upi';
-            const payeeName = 'Bhagavathi Sri Venkatamba Temple';
-            const currency = 'INR';
-
-            const toast = document.getElementById('donationToast');
-
-            function showToast(msg){
-                if(!toast) return;
-                toast.textContent = msg;
-                toast.style.display = 'block';
-                setTimeout(() => { toast.style.display = 'none'; }, 2200);
-            }
-
-            
-            function resetDonationOptions(){
-                const optUpi = document.getElementById('optUpi');
-                const optBank = document.getElementById('optBank');
-                const upiPanel = document.getElementById('upiPanel');
-                const bankPanel = document.getElementById('bankPanel');
-
-                if(optUpi) optUpi.classList.remove('active');
-                if(optBank) optBank.classList.remove('active');
-                if(upiPanel) upiPanel.style.display = 'none';
-                if(bankPanel) bankPanel.style.display = 'none';
-                const netPanel = document.getElementById('netPanel');
-                if(netPanel) netPanel.style.display = 'none';
-            }
-
-            function openDonationModal(){
-                if(!donationModal) return;
-                donationModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                resetDonationOptions();
-                // default selected amount
-                setSelectedAmount(getSelectedAmount() || 501);
-            }
-
-            function closeDonationModal(){
-                if(!donationModal) return;
-                donationModal.style.display = 'none';
-                document.body.style.overflow = '';
-                resetDonationOptions();
-            }
-
-            function getSelectedAmount(){
-                const active = document.querySelector('.donation-amount-btn.active');
-                if(active && active.dataset.amount) return Number(active.dataset.amount);
-                const v = (customAmount && customAmount.value) ? Number(customAmount.value) : 0;
-                return Number.isFinite(v) && v > 0 ? v : 0;
-            }
-
-            function setSelectedAmount(amount){
-                amountBtns.forEach(b => b.classList.remove('active'));
-                const match = Array.from(amountBtns).find(b => Number(b.dataset.amount) === Number(amount));
-                if(match){
-                    match.classList.add('active');
-                    if(customAmount) customAmount.value = '';
-                }
-            }
-
-            function sanitizeAmount(raw){
-                const n = Number(String(raw).replace(/[^0-9]/g,''));
-                if(!Number.isFinite(n)) return 0;
-                // keep a sane range
-                if(n < 1) return 0;
-                if(n > 999999) return 999999;
-                return n;
-            }
-
-            function buildUpiUrl(amount){
-                const params = new URLSearchParams();
-                params.set('pa', upiId);
-                params.set('pn', payeeName);
-                params.set('am', String(amount));
-                params.set('cu', currency);
-                params.set('tn', 'Temple Donation');
-                return 'upi://pay?' + params.toString();
-            }
-
-            function buildPhonePeUrl(amount){
-                // PhonePe supports phonepe://pay on many Android devices.
-                // If it fails, we fall back to generic UPI deep link.
-                const params = new URLSearchParams();
-                params.set('pa', upiId);
-                params.set('pn', payeeName);
-                params.set('am', String(amount));
-                params.set('cu', currency);
-                params.set('tn', 'Temple Donation');
-                return 'phonepe://pay?' + params.toString();
-            }
-
-            function tryOpenDeepLink(primaryUrl, fallbackUrl){
-                // On mobile, attempting to open an app deep link.
-                // If blocked/not supported, fallback to generic UPI.
-                showToast('Opening your UPI app…');
-                const start = Date.now();
-
-                // iOS Safari often blocks custom schemes unless user-initiated (this is user-initiated via click).
-                window.location.href = primaryUrl;
-
-                setTimeout(() => {
-                    // If we’re still on page after ~900ms, attempt fallback
-                    if(Date.now() - start > 800){
-                        if(fallbackUrl && fallbackUrl !== primaryUrl){
-                            window.location.href = fallbackUrl;
-                        } else {
-                            showToast('If nothing opened, scan the QR or copy the UPI ID.');
-                        }
-                    }
-                }, 900);
-            }
-
-            // Wire open buttons
-            if(headerDonateBtn){
-                headerDonateBtn.addEventListener('click', openDonationModal);
-            }
-            if(homeDonateBtn){
-                homeDonateBtn.addEventListener('click', openDonationModal);
-            }
-            // Mobile menu "Donate Now" links
-            mobileDonateLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // only intercept if it targets donation
-                    const href = link.getAttribute('href') || '';
-                    if(href === '#donate'){
-                        e.preventDefault();
-                        openDonationModal();
-                    }
-                });
-            });
-
-            // Close behaviors
-            if(closeBtn) closeBtn.addEventListener('click', closeDonationModal);
-            if(backBtn) backBtn.addEventListener('click', closeDonationModal);
-            if(donationModal){
-                donationModal.addEventListener('click', (e) => {
-                    if(e.target === donationModal) closeDonationModal();
-                });
-            }
-            document.addEventListener('keydown', (e) => {
-                if(e.key === 'Escape' && donationModal && donationModal.style.display === 'flex'){
-                    closeDonationModal();
-                }
-            });
-
-            // Amount selection
-            amountBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const amount = sanitizeAmount(btn.dataset.amount);
-                    setSelectedAmount(amount);
-                });
-            });
-
-            if(customAmount){
-                customAmount.addEventListener('input', () => {
-                    const amount = sanitizeAmount(customAmount.value);
-                    // remove active pill if custom is typed
-                    if(amount > 0){
-                        amountBtns.forEach(b => b.classList.remove('active'));
-                    }
-                });
-            }
-
-            // Copy helpers
-            function copyText(text, successMsg){
-                if(!text) return;
-                if(navigator.clipboard && navigator.clipboard.writeText){
-                    navigator.clipboard.writeText(text).then(() => showToast(successMsg || 'Copied!')).catch(() => fallbackCopy(text));
-                } else {
-                    fallbackCopy(text);
-                }
-            }
-            function fallbackCopy(text){
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                ta.style.position = 'fixed';
-                ta.style.left = '-9999px';
-                document.body.appendChild(ta);
-                ta.select();
-                try { document.execCommand('copy'); showToast('Copied!'); } catch(e){ showToast('Copy failed'); }
-                document.body.removeChild(ta);
-            }
-
-            const copyUpiBtn = document.getElementById('copyUpi');
-            const copyAccountBtn = document.getElementById('copyAccount');
-            const copyIfscBtn = document.getElementById('copyIfsc');
-
-            if(copyUpiBtn) copyUpiBtn.addEventListener('click', () => copyText(upiId, 'UPI ID copied'));
-            if(copyAccountBtn){
-                const v = document.getElementById('bankAccountValue');
-                copyAccountBtn.addEventListener('click', () => copyText(v ? v.textContent.trim() : '6866890630', 'Account copied'));
-            }
-            if(copyIfscBtn){
-                const v = document.getElementById('bankIfscValue');
-                copyIfscBtn.addEventListener('click', () => copyText(v ? v.textContent.trim() : 'IDIB000N127', 'IFSC copied'));
-            }
-
-            // Payment buttons (deep links)
-            function handlePay(kind){
-                const amount = sanitizeAmount(getSelectedAmount() || 501);
-                if(amount <= 0){
-                    showToast('Select an amount first');
-                    return;
-                }
-                const upiUrl = buildUpiUrl(amount);
-
-                if(kind === 'phonepe'){
-                    const phonepeUrl = buildPhonePeUrl(amount);
-                    tryOpenDeepLink(phonepeUrl, upiUrl);
-                } else {
-                    tryOpenDeepLink(upiUrl, upiUrl);
-                }
-            }
-
-            if(payPhonePe) payPhonePe.addEventListener('click', () => handlePay('phonepe'));
-            if(payAnyUpi) payAnyUpi.addEventListener('click', () => handlePay('upi'));
-        })();
-
-
-        // NetBanking LOV: open a safe search for the official bank NetBanking login page
-        const bankSelect = document.getElementById('bankSelect');
-        const openBankBtn = document.getElementById('openBankNetbanking');
-
-        function bankSearchUrl(bankName){
-            const q = encodeURIComponent(bankName + ' netbanking login');
-            return 'https://www.google.com/search?q=' + q;
-        }
-
-        if(bankSelect && openBankBtn){
-            bankSelect.addEventListener('change', () => {
-                openBankBtn.disabled = !bankSelect.value;
-            });
-
-            openBankBtn.addEventListener('click', () => {
-                if(!bankSelect.value) return;
-                const bankName = bankSelect.options[bankSelect.selectedIndex].textContent;
-                window.open(bankSearchUrl(bankName), '_blank', 'noopener');
-                showToast('Opening NetBanking for: ' + bankName);
-            });
-        }
-
-
-        // ===== NetBanking flow with donor details + receipt (client-side) =====
-        function isValidEmail(v){
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || '').trim());
-        }
-        function isValidPhone(v){
-            const s = String(v || '').replace(/\s+/g,'').trim();
-            return s.length >= 8;
-        }
-        
-        function getDonor(){
-            const nameEl = document.getElementById('donorName');
-            const phoneEl = document.getElementById('donorPhone');
-            const emailEl = document.getElementById('donorEmail');
-            const utrEl = document.getElementById('donorUTR');
-            return {
-                name: nameEl ? nameEl.value.trim() : '',
-                phone: phoneEl ? phoneEl.value.trim() : '',
-                email: emailEl ? emailEl.value.trim() : '',
-                utr: utrEl ? utrEl.value.trim() : ''
-            };
-        }
-        function updateNetbankingButtons(){
-            const bankSelect = document.getElementById('bankSelect');
-            const openBtn = document.getElementById('openBankNetbanking');
-            const doneBtn = document.getElementById('markTransferred');
-            if(!bankSelect || !openBtn || !doneBtn) return;
-
-            const donor = getDonor();
-            const ok = donor.name.length > 1 && isValidPhone(donor.phone) && isValidEmail(donor.email) && !!bankSelect.value;
-            openBtn.disabled = !ok;
-            doneBtn.disabled = !ok;
-        }
-
-        function bankSearchUrl(bankName){
-            const q = encodeURIComponent(bankName + ' netbanking login');
-            return 'https://www.google.com/search?q=' + q;
-        }
-
-        // Bind on DOM ready (and safe if modal is opened later)
-        document.addEventListener('DOMContentLoaded', () => {
-            const bankSelect = document.getElementById('bankSelect');
-            const openBtn = document.getElementById('openBankNetbanking');
-            const doneBtn = document.getElementById('markTransferred');
-
-            const donorName = document.getElementById('donorName');
-            const donorPhone = document.getElementById('donorPhone');
-            const donorEmail = document.getElementById('donorEmail');
-
-            [bankSelect, donorName, donorPhone, donorEmail].forEach(el => {
-                if(el){
-                    el.addEventListener('input', updateNetbankingButtons);
-                    el.addEventListener('change', updateNetbankingButtons);
-                }
-            });
-
-            if(openBtn && bankSelect){
-                openBtn.addEventListener('click', () => {
-                    if(openBtn.disabled) return;
-                    const bankName = bankSelect.options[bankSelect.selectedIndex].textContent;
-                    window.open(bankSearchUrl(bankName), '_blank', 'noopener');
-                    showToast('Opening NetBanking for: ' + bankName);
-                });
-            }
-
-            if(doneBtn){
-                doneBtn.addEventListener('click', () => {
-                    if(doneBtn.disabled) return;
-
-                    const donor = getDonor();
-                    const bankSelect = document.getElementById('bankSelect');
-                    const bankName = bankSelect ? bankSelect.options[bankSelect.selectedIndex].textContent : '';
-                    const amount = (typeof getSelectedAmount === 'function' ? getSelectedAmount() : null) || '';
-
-                    // Generate a simple receipt text
-                    const lines = [];
-                    lines.push('Temple Donation Receipt (NetBanking)');
-                    lines.push('------------------------------');
-                    lines.push('Temple: Bhagavathi Sri Venkatamba Temple');
-                    lines.push('Donor Name: ' + donor.name);
-                    lines.push('Phone: ' + donor.phone);
-                    lines.push('Email: ' + donor.email);
-                    if(amount) lines.push('Amount: INR ' + amount);
-                    lines.push('Bank Used: ' + bankName);
-                    if(donor.utr) lines.push('UTR / Reference: ' + donor.utr);
-                    lines.push('Transfer Mode: IMPS/NEFT/RTGS (Donor completed)');
-                    lines.push('Date/Time: ' + new Date().toLocaleString());
-                    lines.push('');
-                    lines.push('Temple Bank Details:');
-                    lines.push('Account Name: Bhagavathi Sri Venkatamba Temple');
-                    lines.push('Account Number: 6866890630');
-                    lines.push('IFSC: IDIB000N127');
-                    lines.push('Bank & Branch: Indian Bank, Naidupet Branch');
-
-                    const text = lines.join('\n');
-
-                    const box = document.getElementById('receiptBox');
-                    const ta = document.getElementById('receiptText');
-                    if(box && ta){
-                        ta.value = text;
-                        box.style.display = 'block';
-                        box.scrollIntoView({behavior:'smooth', block:'start'});
-                    }
-
-                    // Wire action links
-                    const copyBtn = document.getElementById('copyReceipt');
-                    if(copyBtn){
-                        copyBtn.onclick = async () => {
-                            try{
-                                await navigator.clipboard.writeText(text);
-                                showToast('Receipt copied!');
-                            } catch(e){
-                                showToast('Copy failed. Please copy manually.');
-                            }
-                        };
-                    }
-
-                    const emailLink = document.getElementById('emailReceipt');
-                    if(emailLink){
-                        const subject = encodeURIComponent('Temple Donation Receipt (NetBanking)');
-                        const body = encodeURIComponent(text);
-                        emailLink.href = 'mailto:omsrivenkatamba@gmail.com?subject=' + subject + '&body=' + body;
-                    }
-
-                    const waLink = document.getElementById('whatsAppReceipt');
-                    if(waLink){
-                        // WhatsApp web link (works on phone/desktop if WhatsApp installed)
-                        const msg = encodeURIComponent(text);
-                        waLink.href = 'https://wa.me/?text=' + msg;
-                    }
-
-                    showToast('Receipt generated. Please send it via Email/WhatsApp.');
-                });
-            }
-
-            updateNetbankingButtons();
-        });
-
-
-                // ===== Option selection (UPI vs Bank vs NetBanking) =====
-        const optUpi = document.getElementById('optUpi');
-        const optBank = document.getElementById('optBank');
-        const optNet = document.getElementById('optNet');
-        const upiPanel = document.getElementById('upiPanel');
-        const bankPanel = document.getElementById('bankPanel');
-        const netPanel = document.getElementById('netPanel');
-
-        function setActiveOption(which){
-            if(!upiPanel || !bankPanel) return;
-
-            if(optUpi) optUpi.classList.remove('active');
-            if(optBank) optBank.classList.remove('active');
-            if(optNet) optNet.classList.remove('active');
-
-            upiPanel.style.display = 'none';
-            bankPanel.style.display = 'none';
-            if(netPanel) netPanel.style.display = 'none';
-
-            if(which === 'upi'){
-                if(optUpi) optUpi.classList.add('active');
-                upiPanel.style.display = 'block';
-                upiPanel.scrollIntoView({behavior:'smooth', block:'start'});
-            }else if(which === 'bank'){
-                if(optBank) optBank.classList.add('active');
-                bankPanel.style.display = 'block';
-                bankPanel.scrollIntoView({behavior:'smooth', block:'start'});
-            }else if(which === 'net'){
-                if(optNet) optNet.classList.add('active');
-                if(netPanel){
-                    netPanel.style.display = 'block';
-                    netPanel.scrollIntoView({behavior:'smooth', block:'start'});
-                }
-            }
-        }
-
-        if(optUpi){ optUpi.addEventListener('click', () => setActiveOption('upi')); }
-        if(optBank){ optBank.addEventListener('click', () => setActiveOption('bank')); }
-        if(optNet){ optNet.addEventListener('click', () => setActiveOption('net')); }
-
-        // Populate bank dropdown options (kept in JS to avoid huge HTML)
-        const bankSelectEl = document.getElementById('bankSelect');
-        if(bankSelectEl && bankSelectEl.options.length <= 1){
-            const banks = [
-                "State Bank of India (SBI)","HDFC Bank","ICICI Bank","Axis Bank","Kotak Mahindra Bank",
-                "Punjab National Bank (PNB)","Bank of Baroda","Canara Bank","Union Bank of India","Indian Bank",
-                "IDBI Bank","Bank of India","Central Bank of India","UCO Bank","Bank of Maharashtra",
-                "Indian Overseas Bank","Punjab & Sind Bank","Yes Bank","IndusInd Bank","IDFC FIRST Bank",
-                "Federal Bank","RBL Bank","AU Small Finance Bank","Bandhan Bank","South Indian Bank",
-                "Karnataka Bank","Karur Vysya Bank","City Union Bank","Dhanlaxmi Bank","Jammu & Kashmir Bank",
-                "Tamilnad Mercantile Bank","CSB Bank","Nainital Bank","HSBC India","Standard Chartered Bank India","Citibank India"
-            ];
-            banks.forEach((b, i) => {
-                const opt = document.createElement('option');
-                opt.value = String(i+1);
-                opt.textContent = b;
-                bankSelectEl.appendChild(opt);
-            });
-        }
-}
-
-            if(payAnyUpiBtn){
-                payAnyUpiBtn.addEventListener('click', () => {
-                    const amount = getSelectedAmount();
-                    if(!amount){ showToast('Please select or enter an amount.'); return; }
-
-                    if(!isMobilePaymentDevice()){
-                        showToast('UPI links open on phones. Please scan the QR code.');
-                        return;
-                    }
-
-                    const upiUrl = buildUpiUrl(amount);
-                    openDeepLink(upiUrl);
-                });
-            }
-
-            // Copy buttons for Direct Bank Transfer
-            const copyAccount = document.getElementById('copyAccount');
-            const copyIfsc = document.getElementById('copyIfsc');
-            if(copyAccount){
-                copyAccount.addEventListener('click', async () => {
-                    try{ await navigator.clipboard.writeText('6866890630'); showToast('Account number copied!'); }
-                    catch(e){ showToast('Copy failed.'); }
-                });
-            }
-            if(copyIfsc){
-                copyIfsc.addEventListener('click', async () => {
-                    try{ await navigator.clipboard.writeText('IDIB000N127'); showToast('IFSC copied!'); }
-                    catch(e){ showToast('Copy failed.'); }
-                });
-            }
-        });
-
-    
-        // ===== Robust Android app launching for UPI / PhonePe =====
-        function buildUpiIntentUrl(amount){
-            const params = new URLSearchParams();
-            params.set('pa', upiId);
-            params.set('pn', payeeName);
-            params.set('am', String(amount));
-            params.set('cu', currency);
-            params.set('tn', 'Temple Donation');
-            // Android intent is often more reliable than upi:// in Chrome
-            return 'intent://pay?' + params.toString() + '#Intent;scheme=upi;end';
-        }
-
-        function buildPhonePeIntentUrl(amount){
-            const params = new URLSearchParams();
-            params.set('pa', upiId);
-            params.set('pn', payeeName);
-            params.set('am', String(amount));
-            params.set('cu', currency);
-            params.set('tn', 'Temple Donation');
-            return 'intent://pay?' + params.toString() + '#Intent;scheme=phonepe;package=com.phonepe.app;end';
-        }
-
-        function launchCustomScheme(href){
-            // Using an <a> click is often more reliable on Android Chrome than window.location
-            const a = document.createElement('a');
-            a.href = href;
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => a.remove(), 500);
-        }
-
-        function tryLaunch(primaryHref, fallbackHref){
-            // Attempt primary; if it fails silently, try fallback after ~1s
-            launchCustomScheme(primaryHref);
-            if(fallbackHref){
-                setTimeout(() => launchCustomScheme(fallbackHref), 1100);
-            }
-        }
-
-        function bindDonateOptionButtons(){
-            const optUpi = document.getElementById('optUpi');
-            const optBank = document.getElementById('optBank');
-            const optNet = document.getElementById('optNet');
-            const upiPanel = document.getElementById('upiPanel');
-            const bankPanel = document.getElementById('bankPanel');
-            const netPanel = document.getElementById('netPanel');
-
-            function clearActive(){
-                [optUpi,optBank,optNet].forEach(x => x && x.classList.remove('active'));
-                if(upiPanel) upiPanel.style.display = 'none';
-                if(bankPanel) bankPanel.style.display = 'none';
-                if(netPanel) netPanel.style.display = 'none';
-            }
-            function show(which){
-                clearActive();
-                if(which==='upi'){
-                    if(optUpi) optUpi.classList.add('active');
-                    if(upiPanel){ upiPanel.style.display='block'; upiPanel.scrollIntoView({behavior:'smooth', block:'start'}); }
-                }else if(which==='bank'){
-                    if(optBank) optBank.classList.add('active');
-                    if(bankPanel){ bankPanel.style.display='block'; bankPanel.scrollIntoView({behavior:'smooth', block:'start'}); }
-                }else if(which==='net'){
-                    if(optNet) optNet.classList.add('active');
-                    if(netPanel){ netPanel.style.display='block'; netPanel.scrollIntoView({behavior:'smooth', block:'start'}); }
-                }
-            }
-
-            if(optUpi) optUpi.onclick = () => show('upi');
-            if(optBank) optBank.onclick = () => show('bank');
-            if(optNet) optNet.onclick = () => show('net');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            bindDonateOptionButtons();
-
-            const payPhonePeBtn = document.getElementById('payPhonePe');
-            const payAnyUpiBtn = document.getElementById('payAnyUpi');
-
-            if(payPhonePeBtn){
-                payPhonePeBtn.onclick = () => {
-                    const amount = getSelectedAmount();
-                    if(!amount){ showToast('Please select or enter an amount.'); return; }
-
-                    // PhonePe intent first, then fallback to generic UPI intent, then upi://
-                    const phonepeIntent = buildPhonePeIntentUrl(amount);
-                    const upiIntent = buildUpiIntentUrl(amount);
-                    const upiScheme = buildUpiUrl(amount);
-
-                    tryLaunch(phonepeIntent, upiIntent);
-                    setTimeout(() => launchCustomScheme(upiScheme), 2200);
-                };
-            }
-
-            if(payAnyUpiBtn){
-                payAnyUpiBtn.onclick = () => {
-                    const amount = getSelectedAmount();
-                    if(!amount){ showToast('Please select or enter an amount.'); return; }
-
-                    const upiIntent = buildUpiIntentUrl(amount);
-                    const upiScheme = buildUpiUrl(amount);
-
-                    tryLaunch(upiIntent, upiScheme);
-                };
-            }
-        });
-
-</script>
-
-<script>
-(function(){
-  function openDonation(){
-    var modal = document.getElementById('donationModal');
-    if(!modal) return;
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeDonation(){
-    var modal = document.getElementById('donationModal');
-    if(!modal) return;
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-
-  // Bind open buttons (super defensive)
-  var ids = ['donateBtn','homeDonateBtn','mobileDonateBtn'];
-  ids.forEach(function(id){
-    var el = document.getElementById(id);
-    if(el){ el.addEventListener('click', function(e){ e.preventDefault(); openDonation(); }); }
-  });
-
-  document.querySelectorAll('[data-open-donation="true"]').forEach(function(el){
-    el.addEventListener('click', function(e){ e.preventDefault(); openDonation(); });
-  });
-
-  // Close buttons
-  var closeX = document.getElementById('closeDonationModal');
-  var back = document.getElementById('donationBackBtn');
-  if(closeX){ closeX.addEventListener('click', closeDonation); }
-  if(back){ back.addEventListener('click', closeDonation); }
-
-  // Outside click + ESC
-  var modal = document.getElementById('donationModal');
-  if(modal){
-    modal.addEventListener('click', function(e){ if(e.target === modal) closeDonation(); });
-  }
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeDonation();
-  });
-})();
-
-        // ===== Amount selection fix =====
-        let selectedAmount = null;
-
-        function wireAmountButtons(){
-            const btns = document.querySelectorAll('.donation-amount-btn');
-            btns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // clear active
-                    btns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    // read amount
-                    const amt = btn.getAttribute('data-amount') || btn.innerText.replace(/[^0-9]/g,'');
-                    selectedAmount = Number(amt);
-
-                    // clear custom input if any
-                    const customInput = document.getElementById('customAmountInput');
-                    if(customInput) customInput.value = '';
-
-                    showToast('Selected ₹' + selectedAmount);
-                });
-            });
-        }
-
-        // Ensure it runs after modal opens
-        document.addEventListener('DOMContentLoaded', wireAmountButtons);
-
-    
-        // ===== Ensure UPI buttons work (Android) =====
-        function isMobilePaymentDevice(){
-            const ua = navigator.userAgent || '';
-            const isMobileUA = /Android|iPhone|iPad|iPod/i.test(ua);
-            const isTouch = (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
-            return isMobileUA || isTouch;
-        }
-        function openDeepLink(url){
-            window.location.href = url;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const payPhonePeBtn = document.getElementById('payPhonePe');
-            const payAnyUpiBtn = document.getElementById('payAnyUpi');
-
-            if(payPhonePeBtn){
-                payPhonePeBtn.addEventListener('click', () => {
-                    const amount = getSelectedAmount();
-                    if(!amount){ showToast('Please select or enter an amount.'); return; }
-
-                    if(!isMobilePaymentDevice()){
-                        showToast('UPI links open on phones. Please scan the QR code.');
-                        return;
-                    }
-
-                    const phonepeUrl = buildPhonePeUrl(amount);
-                    const upiUrl = buildUpiUrl(amount);
-
-                    openDeepLink(phonepeUrl);
-                    setTimeout(() => { openDeepLink(upiUrl); }, 900);
-                });
-            }
-
-            if(payAnyUpiBtn){
-                payAnyUpiBtn.addEventListener('click', () => {
-                    const amount = getSelectedAmount();
-                    if(!amount){ showToast('Please select or enter an amount.'); return; }
-
-                    if(!isMobilePaymentDevice()){
-                        showToast('UPI links open on phones. Please scan the QR code.');
-                        return;
-                    }
-
-                    const upiUrl = buildUpiUrl(amount);
-                    openDeepLink(upiUrl);
-                });
-            }
-
-            // Copy buttons for Direct Bank Transfer
-            const copyAccount = document.getElementById('copyAccount');
-            const copyIfsc = document.getElementById('copyIfsc');
-            if(copyAccount){
-                copyAccount.addEventListener('click', async () => {
-                    try{ await navigator.clipboard.writeText('6866890630'); showToast('Account number copied!'); }
-                    catch(e){ showToast('Copy failed.'); }
-                });
-            }
-            if(copyIfsc){
-                copyIfsc.addEventListener('click', async () => {
-                    try{ await navigator.clipboard.writeText('IDIB000N127'); showToast('IFSC copied!'); }
-                    catch(e){ showToast('Copy failed.'); }
-                });
-            }
-        });
-
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="main.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
