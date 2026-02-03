@@ -115,14 +115,40 @@ function initDonationModal() {
     const closeModalBtn = document.getElementById('closeDonationModal');
     const backBtn = document.getElementById('donationBackBtn');
     
-    // Get ALL donate buttons
+    // Function to open modal
+    function openDonationModal() {
+        console.log('Opening donation modal');
+        if (donationModal) {
+            donationModal.style.display = 'flex';
+            document.body.classList.add('modal-open');
+            
+            // Reset to UPI panel
+            setTimeout(() => {
+                const upiBtn = document.querySelector('[data-panel="upi"]');
+                if (upiBtn) upiBtn.click();
+            }, 100);
+        } else {
+            console.error('Donation modal not found!');
+            alert('Donation system is currently unavailable. Please try again later.');
+        }
+    }
+    
+    // Function to close modal
+    function closeDonationModal() {
+        console.log('Closing donation modal');
+        if (donationModal) {
+            donationModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+    }
+    
+    // Get ALL donate buttons and attach event listeners
     const donateButtons = [
         document.getElementById('donateBtn'),
         document.getElementById('homeDonateBtn'),
         document.getElementById('mobileDonateBtn')
     ];
     
-    // Add click event to ALL donate buttons
     donateButtons.forEach(button => {
         if (button) {
             button.addEventListener('click', function(e) {
@@ -133,9 +159,9 @@ function initDonationModal() {
         }
     });
     
-    // Also add to any other buttons with class donate-btn
+    // Also attach to any other donate buttons (fallback)
     document.querySelectorAll('.donate-btn').forEach(button => {
-        if (!button.id) { // Only if doesn't have ID (to avoid duplicates)
+        if (!button.id || button.id === '') {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 console.log('Generic donate button clicked');
@@ -144,7 +170,7 @@ function initDonationModal() {
         }
     });
     
-    // Close modal functions
+    // Close modal events
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeDonationModal);
     }
@@ -179,41 +205,6 @@ function initDonationModal() {
     console.log('Donation modal initialized successfully');
 }
 
-// Open donation modal
-function openDonationModal() {
-    console.log('Opening donation modal...');
-    const donationModal = document.getElementById('donationModal');
-    
-    if (!donationModal) {
-        console.error('Donation modal element not found!');
-        alert('Donation system is currently unavailable. Please try again later.');
-        return;
-    }
-    
-    donationModal.style.display = 'flex';
-    document.body.classList.add('modal-open');
-    
-    // Reset to UPI panel
-    setTimeout(() => {
-        const upiBtn = document.querySelector('[data-panel="upi"]');
-        if (upiBtn) upiBtn.click();
-    }, 100);
-    
-    console.log('Donation modal opened successfully');
-}
-
-// Close donation modal
-function closeDonationModal() {
-    console.log('Closing donation modal...');
-    const donationModal = document.getElementById('donationModal');
-    
-    if (donationModal) {
-        donationModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        console.log('Donation modal closed');
-    }
-}
-
 // Initialize donation option panels
 function initDonationPanels() {
     const optionButtons = document.querySelectorAll('.donation-option-btn');
@@ -246,13 +237,6 @@ function initDonationPanels() {
             console.log('Switched to panel:', panelName);
         });
     });
-    
-    // Activate UPI panel by default
-    const upiBtn = document.querySelector('[data-panel="upi"]');
-    if (upiBtn) {
-        upiBtn.classList.add('active');
-        if (panels.upi) panels.upi.style.display = 'block';
-    }
 }
 
 // Initialize amount selection
