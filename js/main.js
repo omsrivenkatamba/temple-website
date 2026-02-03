@@ -3,7 +3,7 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Website loaded successfully');
+    console.log('Temple website loaded successfully');
     
     // Initialize all modules
     initMobileMenu();
@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initDonationModal();
     initContactForm();
     initSmoothScrolling();
-    initCommitteeCards();
+    initCurrentYear();
+    
+    console.log('All modules initialized');
 });
 
 // ============================================
@@ -22,58 +24,40 @@ function initMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
     const menuOverlay = document.getElementById('menuOverlay');
-    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
     
     // Open mobile menu
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && mobileMenu) {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (menuOverlay) menuOverlay.classList.add('active');
+            document.body.classList.add('modal-open');
         });
     }
     
     // Close mobile menu
-    if (mobileMenuClose) {
+    if (mobileMenuClose && mobileMenu) {
         mobileMenuClose.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            if (menuOverlay) menuOverlay.classList.remove('active');
+            document.body.classList.remove('modal-open');
         });
     }
     
     // Close menu when clicking overlay
-    if (menuOverlay) {
+    if (menuOverlay && mobileMenu) {
         menuOverlay.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            document.body.classList.remove('modal-open');
         });
     }
     
-    // Mobile dropdown toggles
-    mobileDropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            const dropdownMenu = toggle.nextElementSibling;
-            dropdownMenu.classList.toggle('active');
-            
-            // Toggle chevron icon
-            const icon = toggle.querySelector('i');
-            if (icon.classList.contains('fa-chevron-down')) {
-                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
-            } else {
-                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
-            }
-        });
-    });
-    
-    // Close menu when clicking links
+    // Close menu when clicking mobile menu links
     document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            if (mobileMenu) mobileMenu.classList.remove('active');
+            if (menuOverlay) menuOverlay.classList.remove('active');
+            document.body.classList.remove('modal-open');
         });
     });
 }
@@ -86,14 +70,18 @@ function initImageSlider() {
     if (slides.length === 0) return;
     
     let currentSlide = 0;
+    const totalSlides = slides.length;
     
     function showSlide(index) {
+        // Hide all slides
         slides.forEach(slide => slide.classList.remove('active'));
+        
+        // Show current slide
         slides[index].classList.add('active');
     }
     
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
+        currentSlide = (currentSlide + 1) % totalSlides;
         showSlide(currentSlide);
     }
     
@@ -111,26 +99,49 @@ function initImageSlider() {
             setInterval(nextSlide, 5000);
         });
     }
+    
+    // Show first slide
+    showSlide(0);
 }
 
 // ============================================
-// 3. Donation Modal - Main Functionality
+// 3. DONATION MODAL - SIMPLE & WORKING VERSION
 // ============================================
 function initDonationModal() {
     console.log('Initializing donation modal...');
     
-    // Modal elements
+    // Get modal elements
     const donationModal = document.getElementById('donationModal');
     const closeModalBtn = document.getElementById('closeDonationModal');
-    const donationBackBtn = document.getElementById('donationBackBtn');
-    const closeModalBtnFooter = document.getElementById('closeModalBtn');
+    const backBtn = document.getElementById('donationBackBtn');
     
-    // Open modal from any button with data-open-donation="true"
-    document.querySelectorAll('[data-open-donation="true"]').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openDonationModal();
-        });
+    // Get ALL donate buttons
+    const donateButtons = [
+        document.getElementById('donateBtn'),
+        document.getElementById('homeDonateBtn'),
+        document.getElementById('mobileDonateBtn')
+    ];
+    
+    // Add click event to ALL donate buttons
+    donateButtons.forEach(button => {
+        if (button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Donate button clicked:', this.id);
+                openDonationModal();
+            });
+        }
+    });
+    
+    // Also add to any other buttons with class donate-btn
+    document.querySelectorAll('.donate-btn').forEach(button => {
+        if (!button.id) { // Only if doesn't have ID (to avoid duplicates)
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Generic donate button clicked');
+                openDonationModal();
+            });
+        }
     });
     
     // Close modal functions
@@ -138,12 +149,8 @@ function initDonationModal() {
         closeModalBtn.addEventListener('click', closeDonationModal);
     }
     
-    if (donationBackBtn) {
-        donationBackBtn.addEventListener('click', closeDonationModal);
-    }
-    
-    if (closeModalBtnFooter) {
-        closeModalBtnFooter.addEventListener('click', closeDonationModal);
+    if (backBtn) {
+        backBtn.addEventListener('click', closeDonationModal);
     }
     
     // Close when clicking outside modal
@@ -163,209 +170,144 @@ function initDonationModal() {
     });
     
     // Initialize donation modal components
+    initDonationPanels();
     initAmountSelection();
-    initOptionPanels();
     initUpiPayment();
     initCopyButtons();
-    initNetBankingForm();
+    initNetBanking();
+    
+    console.log('Donation modal initialized successfully');
 }
 
 // Open donation modal
 function openDonationModal() {
+    console.log('Opening donation modal...');
     const donationModal = document.getElementById('donationModal');
+    
     if (!donationModal) {
-        console.error('Donation modal not found');
+        console.error('Donation modal element not found!');
+        alert('Donation system is currently unavailable. Please try again later.');
         return;
     }
     
     donationModal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     
-    // Reset to UPI panel by default
+    // Reset to UPI panel
     setTimeout(() => {
-        const optUpi = document.getElementById('optUpi');
-        if (optUpi) {
-            optUpi.click();
-            // Set default amount
-            setSelectedAmount(501);
-        }
+        const upiBtn = document.querySelector('[data-panel="upi"]');
+        if (upiBtn) upiBtn.click();
     }, 100);
     
-    console.log('Donation modal opened');
+    console.log('Donation modal opened successfully');
 }
 
 // Close donation modal
 function closeDonationModal() {
+    console.log('Closing donation modal...');
     const donationModal = document.getElementById('donationModal');
-    if (!donationModal) return;
     
-    donationModal.style.display = 'none';
-    document.body.style.overflow = '';
-    
-    console.log('Donation modal closed');
+    if (donationModal) {
+        donationModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+        console.log('Donation modal closed');
+    }
 }
 
-// ============================================
-// 4. Amount Selection
-// ============================================
-function initAmountSelection() {
-    const amountBtns = document.querySelectorAll('.donation-amount-btn');
-    const customAmountInput = document.getElementById('donationCustomAmount');
+// Initialize donation option panels
+function initDonationPanels() {
+    const optionButtons = document.querySelectorAll('.donation-option-btn');
+    const panels = {
+        upi: document.getElementById('upiPanel'),
+        bank: document.getElementById('bankPanel'),
+        netbanking: document.getElementById('netbankingPanel')
+    };
     
-    amountBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
+    optionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const panelName = this.getAttribute('data-panel');
+            
             // Remove active class from all buttons
-            amountBtns.forEach(b => b.classList.remove('active'));
+            optionButtons.forEach(btn => btn.classList.remove('active'));
+            
             // Add active class to clicked button
             this.classList.add('active');
             
-            // Clear custom amount input
+            // Hide all panels
+            Object.values(panels).forEach(panel => {
+                if (panel) panel.style.display = 'none';
+            });
+            
+            // Show selected panel
+            if (panels[panelName]) {
+                panels[panelName].style.display = 'block';
+            }
+            
+            console.log('Switched to panel:', panelName);
+        });
+    });
+    
+    // Activate UPI panel by default
+    const upiBtn = document.querySelector('[data-panel="upi"]');
+    if (upiBtn) {
+        upiBtn.classList.add('active');
+        if (panels.upi) panels.upi.style.display = 'block';
+    }
+}
+
+// Initialize amount selection
+function initAmountSelection() {
+    const amountButtons = document.querySelectorAll('.donation-amount-btn');
+    const customAmountInput = document.getElementById('customAmount');
+    
+    amountButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Clear custom amount
             if (customAmountInput) {
                 customAmountInput.value = '';
             }
             
-            console.log('Selected amount:', this.dataset.amount);
+            console.log('Selected amount:', this.getAttribute('data-amount'));
         });
     });
     
     // Handle custom amount input
     if (customAmountInput) {
         customAmountInput.addEventListener('input', function() {
-            const value = parseInt(this.value.replace(/[^0-9]/g, ''));
-            if (value > 0) {
-                // Remove active class from preset amount buttons
-                amountBtns.forEach(b => b.classList.remove('active'));
-                console.log('Custom amount:', value);
+            if (this.value) {
+                // Remove active class from preset buttons
+                amountButtons.forEach(btn => btn.classList.remove('active'));
             }
         });
     }
 }
 
-// Set selected amount programmatically
-function setSelectedAmount(amount) {
-    const amountBtns = document.querySelectorAll('.donation-amount-btn');
-    amountBtns.forEach(btn => {
-        if (parseInt(btn.dataset.amount) === amount) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-}
-
 // Get selected amount
 function getSelectedAmount() {
     const activeBtn = document.querySelector('.donation-amount-btn.active');
-    if (activeBtn && activeBtn.dataset.amount) {
-        return parseInt(activeBtn.dataset.amount);
+    const customAmountInput = document.getElementById('customAmount');
+    
+    if (activeBtn) {
+        return activeBtn.getAttribute('data-amount');
+    } else if (customAmountInput && customAmountInput.value) {
+        return customAmountInput.value;
     }
     
-    const customInput = document.getElementById('donationCustomAmount');
-    if (customInput && customInput.value) {
-        const amount = parseInt(customInput.value.replace(/[^0-9]/g, ''));
-        return amount > 0 ? amount : null;
-    }
-    
-    return 501; // Default amount
+    return '501'; // Default amount
 }
 
-// ============================================
-// 5. Option Panels (UPI, Bank, NetBanking)
-// ============================================
-function initOptionPanels() {
-    const optUpi = document.getElementById('optUpi');
-    const optBank = document.getElementById('optBank');
-    const optNet = document.getElementById('optNet');
-    const upiPanel = document.getElementById('upiPanel');
-    const bankPanel = document.getElementById('bankPanel');
-    const netPanel = document.getElementById('netPanel');
-    
-    // Function to show selected panel
-    function showPanel(panelToShow) {
-        // Hide all panels
-        if (upiPanel) upiPanel.style.display = 'none';
-        if (bankPanel) bankPanel.style.display = 'none';
-        if (netPanel) netPanel.style.display = 'none';
-        
-        // Remove active class from all options
-        if (optUpi) optUpi.classList.remove('active');
-        if (optBank) optBank.classList.remove('active');
-        if (optNet) optNet.classList.remove('active');
-        
-        // Show selected panel and activate option
-        if (panelToShow === 'upi' && upiPanel) {
-            upiPanel.style.display = 'block';
-            if (optUpi) optUpi.classList.add('active');
-        } else if (panelToShow === 'bank' && bankPanel) {
-            bankPanel.style.display = 'block';
-            if (optBank) optBank.classList.add('active');
-        } else if (panelToShow === 'net' && netPanel) {
-            netPanel.style.display = 'block';
-            if (optNet) optNet.classList.add('active');
-            
-            // Initialize bank dropdown if not already populated
-            populateBankDropdown();
-        }
-    }
-    
-    // Add click event listeners
-    if (optUpi) {
-        optUpi.addEventListener('click', () => showPanel('upi'));
-    }
-    if (optBank) {
-        optBank.addEventListener('click', () => showPanel('bank'));
-    }
-    if (optNet) {
-        optNet.addEventListener('click', () => showPanel('net'));
-    }
-    
-    // Show UPI panel by default
-    setTimeout(() => {
-        if (optUpi) showPanel('upi');
-    }, 100);
-}
-
-// ============================================
-// 6. UPI Payment Functionality
-// ============================================
+// Initialize UPI payment
 function initUpiPayment() {
     const payPhonePeBtn = document.getElementById('payPhonePe');
     const payAnyUpiBtn = document.getElementById('payAnyUpi');
     
-    // Function to build UPI URL
-    function buildUpiUrl(amount) {
-        const upiId = 'omsrivenkatamba@upi';
-        const payeeName = 'Bhagavathi Sri Venkatamba Temple';
-        
-        // URL encode parameters
-        const params = new URLSearchParams({
-            pa: upiId,
-            pn: payeeName,
-            am: amount.toString(),
-            tn: 'Temple Donation',
-            cu: 'INR'
-        });
-        
-        return `upi://pay?${params.toString()}`;
-    }
-    
-    // Function to build PhonePe URL
-    function buildPhonePeUrl(amount) {
-        const upiId = 'omsrivenkatamba@upi';
-        const payeeName = 'Bhagavathi Sri Venkatamba Temple';
-        
-        const params = new URLSearchParams({
-            pa: upiId,
-            pn: payeeName,
-            am: amount.toString(),
-            tn: 'Temple Donation',
-            cu: 'INR'
-        });
-        
-        return `phonepe://pay?${params.toString()}`;
-    }
-    
-    // Function to show toast message
+    // Function to show toast
     function showToast(message) {
         const toast = document.getElementById('donationToast');
         if (!toast) return;
@@ -375,26 +317,41 @@ function initUpiPayment() {
         
         setTimeout(() => {
             toast.style.display = 'none';
-        }, 2000);
+        }, 3000);
     }
     
-    // Check if device is mobile
+    // Function to build UPI URL
+    function buildUpiUrl(amount) {
+        const upiId = 'omsrivenkatamba@upi';
+        const payeeName = 'Bhagavathi Sri Venkatamba Temple';
+        
+        return `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&tn=Temple Donation&cu=INR`;
+    }
+    
+    // Function to build PhonePe URL
+    function buildPhonePeUrl(amount) {
+        const upiId = 'omsrivenkatamba@upi';
+        const payeeName = 'Bhagavathi Sri Venkatamba Temple';
+        
+        return `phonepe://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&tn=Temple Donation&cu=INR`;
+    }
+    
+    // Check if mobile device
     function isMobileDevice() {
-        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || 
-               (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+        return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
     
-    // PhonePe button click
+    // PhonePe button
     if (payPhonePeBtn) {
         payPhonePeBtn.addEventListener('click', function() {
             const amount = getSelectedAmount();
-            if (!amount || amount <= 0) {
+            if (!amount || amount < 1) {
                 showToast('Please select or enter an amount');
                 return;
             }
             
             if (!isMobileDevice()) {
-                showToast('PhonePe works best on mobile devices. Please scan the QR code.');
+                showToast('PhonePe works on mobile devices. Please scan QR code on desktop.');
                 return;
             }
             
@@ -404,7 +361,7 @@ function initUpiPayment() {
             // Try to open PhonePe
             window.location.href = phonePeUrl;
             
-            // Fallback to UPI after 1 second
+            // Fallback after 1 second
             setTimeout(() => {
                 const upiUrl = buildUpiUrl(amount);
                 window.location.href = upiUrl;
@@ -412,17 +369,17 @@ function initUpiPayment() {
         });
     }
     
-    // Any UPI button click
+    // Any UPI button
     if (payAnyUpiBtn) {
         payAnyUpiBtn.addEventListener('click', function() {
             const amount = getSelectedAmount();
-            if (!amount || amount <= 0) {
+            if (!amount || amount < 1) {
                 showToast('Please select or enter an amount');
                 return;
             }
             
             if (!isMobileDevice()) {
-                showToast('UPI works best on mobile devices. Please scan the QR code.');
+                showToast('UPI apps work on mobile. Please scan QR code on desktop.');
                 return;
             }
             
@@ -433,15 +390,13 @@ function initUpiPayment() {
     }
 }
 
-// ============================================
-// 7. Copy Buttons Functionality
-// ============================================
+// Initialize copy buttons
 function initCopyButtons() {
     // Copy UPI ID
     const copyUpiBtn = document.getElementById('copyUpi');
     if (copyUpiBtn) {
         copyUpiBtn.addEventListener('click', function() {
-            copyToClipboard('omsrivenkatamba@upi', 'UPI ID copied!');
+            copyToClipboard('omsrivenkatamba@upi', 'UPI ID copied to clipboard!');
         });
     }
     
@@ -461,7 +416,7 @@ function initCopyButtons() {
         });
     }
     
-    // Helper function to copy to clipboard
+    // Copy to clipboard helper
     function copyToClipboard(text, successMessage) {
         navigator.clipboard.writeText(text).then(() => {
             showToast(successMessage || 'Copied to clipboard!');
@@ -487,217 +442,44 @@ function initCopyButtons() {
         
         setTimeout(() => {
             toast.style.display = 'none';
-        }, 2000);
+        }, 3000);
     }
 }
 
-// ============================================
-// 8. NetBanking Form Functionality
-// ============================================
-function initNetBankingForm() {
+// Initialize NetBanking
+function initNetBanking() {
+    const openNetbankingBtn = document.getElementById('openNetbanking');
     const bankSelect = document.getElementById('bankSelect');
-    const openBankBtn = document.getElementById('openBankNetbanking');
-    const markTransferredBtn = document.getElementById('markTransferred');
-    const copyReceiptBtn = document.getElementById('copyReceipt');
-    const emailReceiptBtn = document.getElementById('emailReceipt');
-    const whatsAppReceiptBtn = document.getElementById('whatsAppReceipt');
     
-    // Populate bank dropdown
-    function populateBankDropdown() {
-        if (bankSelect && bankSelect.options.length <= 1) {
-            const banks = [
-                "State Bank of India (SBI)",
-                "HDFC Bank",
-                "ICICI Bank", 
-                "Axis Bank",
-                "Kotak Mahindra Bank",
-                "Punjab National Bank (PNB)",
-                "Bank of Baroda",
-                "Canara Bank",
-                "Union Bank of India",
-                "Indian Bank",
-                "IDBI Bank",
-                "Bank of India",
-                "Central Bank of India",
-                "UCO Bank",
-                "Bank of Maharashtra",
-                "Indian Overseas Bank",
-                "Punjab & Sind Bank",
-                "Yes Bank",
-                "IndusInd Bank",
-                "IDFC FIRST Bank"
-            ];
+    if (openNetbankingBtn && bankSelect) {
+        openNetbankingBtn.addEventListener('click', function() {
+            const selectedBank = bankSelect.value;
             
-            banks.forEach((bank, index) => {
-                const option = document.createElement('option');
-                option.value = bank.toLowerCase().replace(/\s+/g, '-');
-                option.textContent = bank;
-                bankSelect.appendChild(option);
-            });
-        }
-    }
-    
-    // Validate NetBanking form
-    function validateNetBankingForm() {
-        const donorName = document.getElementById('donorName')?.value.trim();
-        const donorPhone = document.getElementById('donorPhone')?.value.trim();
-        const donorEmail = document.getElementById('donorEmail')?.value.trim();
-        const bankSelected = bankSelect?.value;
-        
-        const isValid = donorName && donorName.length >= 2 && 
-                       donorPhone && donorPhone.length >= 10 && 
-                       donorEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(donorEmail) &&
-                       bankSelected;
-        
-        if (openBankBtn) openBankBtn.disabled = !isValid;
-        if (markTransferredBtn) markTransferredBtn.disabled = !isValid;
-        
-        return isValid;
-    }
-    
-    // Add validation on input
-    const formInputs = ['donorName', 'donorPhone', 'donorEmail'];
-    formInputs.forEach(id => {
-        const input = document.getElementById(id);
-        if (input) {
-            input.addEventListener('input', validateNetBankingForm);
-        }
-    });
-    
-    if (bankSelect) {
-        bankSelect.addEventListener('change', validateNetBankingForm);
-    }
-    
-    // Open NetBanking button
-    if (openBankBtn) {
-        openBankBtn.addEventListener('click', function() {
-            if (this.disabled) return;
-            
-            const selectedBank = bankSelect.options[bankSelect.selectedIndex].textContent;
-            const searchQuery = encodeURIComponent(selectedBank + ' netbanking login');
-            window.open(`https://www.google.com/search?q=${searchQuery}`, '_blank', 'noopener,noreferrer');
-            
-            showToast(`Opening NetBanking for: ${selectedBank}`);
-        });
-    }
-    
-    // Mark as transferred button
-    if (markTransferredBtn) {
-        markTransferredBtn.addEventListener('click', function() {
-            if (this.disabled) return;
-            
-            // Get form values
-            const donorName = document.getElementById('donorName').value;
-            const donorPhone = document.getElementById('donorPhone').value;
-            const donorEmail = document.getElementById('donorEmail').value;
-            const donorUTR = document.getElementById('donorUTR').value;
-            const selectedBank = bankSelect.options[bankSelect.selectedIndex].textContent;
-            const amount = getSelectedAmount() || 'Not specified';
-            
-            // Generate receipt text
-            const receiptText = `
-Temple Donation Receipt
-========================
-Donor Information:
-- Name: ${donorName}
-- Phone: ${donorPhone}
-- Email: ${donorEmail}
-- UTR/Reference: ${donorUTR || 'Not provided'}
-
-Transaction Details:
-- Amount: ₹${amount}
-- Bank: ${selectedBank}
-- Mode: NetBanking Transfer
-- Date: ${new Date().toLocaleDateString()}
-- Time: ${new Date().toLocaleTimeString()}
-
-Temple Bank Details:
-- Account Name: Bhagavathi Sri Venkatamba Temple
-- Account Number: 6866890630
-- IFSC: IDIB000N127
-- Bank: Indian Bank, Naidupet Branch
-- UPI ID: omsrivenkatamba@upi
-
-Thank you for your generous donation!
-This receipt is auto-generated. Please keep for your records.
-            `.trim();
-            
-            // Display receipt
-            const receiptBox = document.getElementById('receiptBox');
-            const receiptTextarea = document.getElementById('receiptText');
-            
-            if (receiptBox && receiptTextarea) {
-                receiptTextarea.value = receiptText;
-                receiptBox.style.display = 'block';
-                
-                // Scroll to receipt
-                receiptBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                showToast('Receipt generated! Copy and send to temple.');
+            if (!selectedBank) {
+                showToast('Please select your bank first');
+                return;
             }
+            
+            // Map bank codes to search queries
+            const bankQueries = {
+                sbi: 'State Bank of India netbanking login',
+                hdfc: 'HDFC Bank netbanking login',
+                icici: 'ICICI Bank netbanking login',
+                axis: 'Axis Bank netbanking login',
+                kotak: 'Kotak Mahindra Bank netbanking login'
+            };
+            
+            const query = bankQueries[selectedBank] || 'netbanking login';
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            
+            window.open(searchUrl, '_blank');
+            showToast('Opening netbanking page...');
         });
-    }
-    
-    // Copy receipt button
-    if (copyReceiptBtn) {
-        copyReceiptBtn.addEventListener('click', function() {
-            const receiptTextarea = document.getElementById('receiptText');
-            if (receiptTextarea && receiptTextarea.value) {
-                copyToClipboard(receiptTextarea.value, 'Receipt copied!');
-            }
-        });
-    }
-    
-    // Email receipt button
-    if (emailReceiptBtn) {
-        emailReceiptBtn.addEventListener('click', function() {
-            const receiptTextarea = document.getElementById('receiptText');
-            if (receiptTextarea && receiptTextarea.value) {
-                const subject = encodeURIComponent('Temple Donation Receipt');
-                const body = encodeURIComponent(receiptTextarea.value);
-                const mailtoLink = `mailto:omsrivenkatamba@gmail.com?subject=${subject}&body=${body}`;
-                
-                // Open in new tab
-                window.open(mailtoLink, '_blank', 'noopener,noreferrer');
-            }
-        });
-    }
-    
-    // WhatsApp receipt button
-    if (whatsAppReceiptBtn) {
-        whatsAppReceiptBtn.addEventListener('click', function() {
-            const receiptTextarea = document.getElementById('receiptText');
-            if (receiptTextarea && receiptTextarea.value) {
-                const text = encodeURIComponent(receiptTextarea.value);
-                const whatsappLink = `https://wa.me/?text=${text}`;
-                
-                window.open(whatsappLink, '_blank', 'noopener,noreferrer');
-            }
-        });
-    }
-    
-    // Helper functions
-    function copyToClipboard(text, message) {
-        navigator.clipboard.writeText(text).then(() => {
-            showToast(message);
-        });
-    }
-    
-    function showToast(message) {
-        const toast = document.getElementById('donationToast');
-        if (!toast) return;
-        
-        toast.textContent = message;
-        toast.style.display = 'block';
-        
-        setTimeout(() => {
-            toast.style.display = 'none';
-        }, 2000);
     }
 }
 
 // ============================================
-// 9. Contact Form Functionality
+// 4. Contact Form Handling
 // ============================================
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
@@ -715,7 +497,7 @@ function initContactForm() {
         
         // Show loading state
         const submitBtn = this.querySelector('.submit-btn');
-        const originalBtnText = submitBtn.innerHTML;
+        const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
@@ -733,32 +515,26 @@ function initContactForm() {
             });
             
             if (response.ok) {
-                // Success - show message
+                // Success
                 const formMessage = document.getElementById('formMessage');
                 if (formMessage) {
                     formMessage.style.display = 'block';
                     formMessage.innerHTML = `
                         <div style="padding: 15px; border-radius: 5px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
                             <i class="fas fa-check-circle" style="margin-right: 10px; color: #28a745;"></i>
-                            <strong>✅ Message Sent Successfully!</strong><br>
-                            Thank you <strong>${name}</strong>! Your message has been sent.
+                            <strong>Message Sent Successfully!</strong><br>
+                            Thank you ${name}! We will contact you soon.
                         </div>
                     `;
-                    
-                    // Scroll to show message
-                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // Reset form after 3 seconds
-                    setTimeout(() => {
-                        this.reset();
-                        // Hide message after 5 seconds
-                        setTimeout(() => {
-                            formMessage.style.display = 'none';
-                        }, 5000);
-                    }, 3000);
                 }
                 
-                console.log('✅ Form submitted successfully!');
+                // Reset form
+                this.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    if (formMessage) formMessage.style.display = 'none';
+                }, 5000);
                 
             } else {
                 throw new Error('Form submission failed');
@@ -772,50 +548,45 @@ function initContactForm() {
                 formMessage.innerHTML = `
                     <div style="padding: 15px; border-radius: 5px; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;">
                         <i class="fas fa-exclamation-circle" style="margin-right: 10px; color: #dc3545;"></i>
-                        <strong>❌ Error Sending Message!</strong><br>
-                        Please try again or contact us directly:<br>
-                        📞 +91 8309 545 660<br>
-                        ✉️ omsrivenkatamba@gmail.com
+                        <strong>Error Sending Message!</strong><br>
+                        Please try again or contact us directly.
                     </div>
                 `;
             }
             
-            console.error('❌ Form submission error:', error);
-            
         } finally {
             // Reset button
-            submitBtn.innerHTML = originalBtnText;
+            submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
         }
     });
 }
 
 // ============================================
-// 10. Smooth Scrolling
+// 5. Smooth Scrolling
 // ============================================
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // Don't prevent default for actual page sections
-            if (href === '#home' || href === '#about' || href === '#services' || 
-                href === '#activities' || href === '#committee' || href === '#contact') {
-                e.preventDefault();
-                
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobileMenu');
-                const menuOverlay = document.getElementById('menuOverlay');
-                if (mobileMenu && menuOverlay) {
-                    mobileMenu.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-                
+            if (href !== '#') {
                 const targetId = href.substring(1);
                 const targetElement = document.getElementById(targetId);
                 
                 if (targetElement) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const menuOverlay = document.getElementById('menuOverlay');
+                    if (mobileMenu && menuOverlay) {
+                        mobileMenu.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        document.body.classList.remove('modal-open');
+                    }
+                    
+                    // Scroll to target
                     window.scrollTo({
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
@@ -827,43 +598,21 @@ function initSmoothScrolling() {
 }
 
 // ============================================
-// 11. Committee Cards Hover Effect
+// 6. Current Year in Footer
 // ============================================
-function initCommitteeCards() {
-    document.querySelectorAll('.committee-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.05)';
-        });
-    });
+function initCurrentYear() {
+    const yearElement = document.getElementById('currentYear');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
 }
 
 // ============================================
-// Test Function for Development
+// 7. Export functions for testing
 // ============================================
-function testDonationModal() {
-    console.log('Testing donation modal...');
-    openDonationModal();
-    
-    // Test UPI panel
-    setTimeout(() => {
-        const optUpi = document.getElementById('optUpi');
-        if (optUpi) optUpi.click();
-        
-        // Test amount selection
-        setTimeout(() => {
-            setSelectedAmount(1001);
-            console.log('Test: Amount set to 1001');
-        }, 500);
-    }, 300);
-}
-
-// Export functions for debugging
-window.testDonationModal = testDonationModal;
 window.openDonationModal = openDonationModal;
 window.closeDonationModal = closeDonationModal;
+window.testDonation = function() {
+    console.log('Testing donation system...');
+    openDonationModal();
+};
