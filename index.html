@@ -3,1035 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhagavathi Sri Venkatamba Temple</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&family=Playfair+Display:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Inline styles remain as you had them */
-        :root {
-            --primary-red: #c62828;
-            --dark-red: #8e0000;
-            --light-red: #ff5f52;
-            --gold: #ffd700;
-            --light-gold: #ffecb3;
-            --white: #ffffff;
-            --light-gray: #f5f5f5;
-            --dark-gray: #333333;
-            --text-color: #222222;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Noto Sans Telugu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--white);
-        }
-        
-        .telugu-text {
-            font-family: 'Noto Sans Telugu', serif;
-            font-size: 1.1rem;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Top Section */
-        .header-top {
-            background-color: var(--dark-red);
-            color: var(--white);
-            padding: 8px 0;
-            font-size: 0.9rem;
-        }
-        
-        .header-top .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header-top-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .header-top-left div {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .header-top-right {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-icon {
-            color: var(--white);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-        
-        .social-icon:hover {
-            color: var(--gold);
-        }
-        
-        /* Main Header with Logo and Menu */
-        .main-header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .logo-section {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-        }
-        
-        .logo {
-            width: 80px;
-            height: 80px;
-            background-color: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-red);
-            font-size: 2rem;
-            margin-right: 15px;
-            border: 3px solid var(--dark-red);
-        }
-        
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            color: var(--dark-red);
-        }
-        
-        .logo-text h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .logo-text .telugu-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-        
-        .main-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-top: 1px solid #eee;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-        
-        .nav-menu li {
-            position: relative;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--dark-gray);
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: color 0.3s;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--primary-red);
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--white);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s;
-            z-index: 100;
-            border-top: 3px solid var(--primary-red);
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-menu li {
-            padding: 0;
-        }
-        
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .dropdown-menu a:hover {
-            background-color: var(--light-gray);
-        }
-        
-        .donate-btn {
-            background-color: var(--primary-red);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .donate-btn:hover {
-            background-color: var(--dark-red);
-        }
-        
-        .approval-badges {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 15px 0;
-            border-top: 1px solid #eee;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .badge {
-            background-color: var(--light-gray);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-            font-weight: 600;
-        }
-        
-        /* Hero Slider */
-        .hero {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
-        
-        .slider {
-            height: 100%;
-            position: relative;
-        }
-        
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .slide.active {
-            opacity: 1;
-        }
-        
-        .slide-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            padding: 40px;
-        }
-        
-        .slide-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* Home Page Content */
-        .home-content {
-            padding: 40px 0;
-        }
-        
-        .home-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        
-        .home-left {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .home-right {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .section-title {
-            color: var(--dark-red);
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background-color: var(--gold);
-        }
-        
-        .prayer-box {
-            background-color: var(--light-gray);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 5px solid var(--gold);
-            margin-bottom: 30px;
-        }
-        
-        .prayer-text {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            text-align: center;
-            color: var(--dark-red);
-        }
-        
-        .donation-box {
-            background-color: #fff9e6;
-            border: 2px solid var(--gold);
-            border-radius: 8px;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        .donation-box h3 {
-            color: var(--dark-red);
-            margin-bottom: 20px;
-        }
-        
-        .donation-details {
-            text-align: left;
-            background-color: var(--white);
-            padding: 20px;
-            border-radius: 6px;
-            margin: 20px 0;
-            border: 1px solid #eee;
-        }
-        
-        .qr-code {
-            width: 150px;
-            height: 150px;
-            background-color: #f0f0f0;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-gray);
-            font-size: 0.9rem;
-        }
-        
-        /* Services Page */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .service-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid var(--primary-red);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-image {
-            height: 180px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-gray);
-        }
-        
-        .service-content {
-            padding: 20px;
-        }
-        
-        .service-content h3 {
-            color: var(--dark-red);
-            margin-bottom: 10px;
-        }
-        
-        .read-more {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary-red);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        /* About Page */
-        .about-content {
-            padding: 40px 0;
-        }
-        
-        .about-text {
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-        
-        .about-image {
-            width: 100%;
-            height: 400px;
-            background-color: #ddd;
-            margin: 30px 0;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-gray);
-        }
-        
-        /* Contact Page */
-        .contact-content {
-            padding: 40px 0;
-        }
-        
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--primary-red);
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .submit-btn:hover {
-            background-color: var(--dark-red);
-        }
-        
-        .contact-details {
-            background-color: var(--light-gray);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        
-        .contact-icon {
-            color: var(--primary-red);
-            font-size: 1.2rem;
-            margin-right: 15px;
-            margin-top: 5px;
-        }
-        
-        .map-container {
-            height: 300px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-gray);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            flex-direction: column;
-            padding: 20px;
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: var(--dark-red);
-            color: var(--white);
-            padding: 40px 0 20px;
-            margin-top: 60px;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-column h3 {
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--gold);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: var(--light-gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .footer-social a {
-            color: var(--white);
-            font-size: 1.3rem;
-            transition: color 0.3s;
-        }
-        
-        .footer-social a:hover {
-            color: var(--gold);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .nav-menu {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: var(--dark-gray);
-                cursor: pointer;
-            }
-            
-            .mobile-menu {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 280px;
-                height: 100vh;
-                background-color: var(--white);
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-                transition: left 0.3s;
-                z-index: 1100;
-                overflow-y: auto;
-                padding: 20px;
-            }
-            
-            .mobile-menu.active {
-                left: 0;
-            }
-            
-            .mobile-menu-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-                padding-bottom: 15px;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .mobile-menu-close {
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: var(--dark-gray);
-                cursor: pointer;
-            }
-            
-            .mobile-nav-menu {
-                list-style: none;
-            }
-            
-            .mobile-nav-menu li {
-                margin-bottom: 10px;
-            }
-            
-            .mobile-nav-menu a {
-                display: block;
-                padding: 12px 15px;
-                color: var(--dark-gray);
-                text-decoration: none;
-                border-radius: 4px;
-            }
-            
-            .mobile-nav-menu a:hover {
-                background-color: var(--light-gray);
-            }
-            
-            .mobile-dropdown-menu {
-                list-style: none;
-                padding-left: 20px;
-                margin-top: 5px;
-                display: none;
-            }
-            
-            .mobile-dropdown-menu.active {
-                display: block;
-            }
-            
-            .mobile-dropdown-toggle {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .menu-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 1050;
-                display: none;
-            }
-            
-            .menu-overlay.active {
-                display: block;
-            }
-        }
-        
-        @media (min-width: 993px) {
-            .mobile-menu-btn, .mobile-menu, .menu-overlay {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-top .container {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            
-            .hero {
-                height: 350px;
-            }
-            
-            .slide-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.6rem;
-            }
-            
-            .committee-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
-            }
-        }
-        
-        .page-header {
-            background: linear-gradient(rgba(198, 40, 40, 0.8), rgba(142, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1544717305-99670f9c28f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 80px 0;
-            margin-bottom: 40px;
-        }
-        
-        .page-header h1 {
-            font-size: 3rem;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 15px;
-        }
-        
-        .page-header p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .activity-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .activity-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .activity-image {
-            height: 200px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-gray);
-        }
-        
-        .activity-content {
-            padding: 20px;
-        }
-        
-        .activity-content h3 {
-            color: var(--dark-red);
-            margin-bottom: 10px;
-        }
-        
-        .activity-date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
+    <title>Bhagavathi Sri Venkatamba Temple - Divine Abode of Peace & Blessings</title>
+    <meta name="description" content="Experience divine blessings at Bhagavathi Sri Venkatamba Temple. A spiritual center dedicated to community service and devotion in Andhra Pradesh.">
+    <meta name="keywords" content="Venkatamba Temple, Sri Venkatamba, Bhagavathi Temple, Nellore Temple, Andhra Pradesh Temple, Spiritual Center">
+    <meta name="author" content="Bhagavathi Sri Venkatamba Temple Committee">
     
-        /* Donation Modal Styles */
-        .donation-modal-overlay {
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&family=Playfair+Display:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Bhagavathi Sri Venkatamba Temple">
+    <meta property="og:description" content="Divine Abode of Peace & Blessings in Andhra Pradesh">
+    <meta property="og:image" content="https://omsrivenkatamba.github.io/temple-website/images/01-main-slide/01-main-slide1.jpg">
+    <meta property="og:url" content="https://omsrivenkatamba.github.io/temple-website/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bhagavathi Sri Venkatamba Temple">
+    <meta name="twitter:description" content="Divine Abode of Peace & Blessings">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PlaceOfWorship",
+        "name": "Bhagavathi Sri Venkatamba Temple",
+        "description": "A divine spiritual center dedicated to Bhagavathi Sri Venkatamba",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Karaballavolu Village, Ozili Mandal",
+            "addressLocality": "Nellore",
+            "addressRegion": "Andhra Pradesh",
+            "postalCode": "524401",
+            "addressCountry": "IN"
+        },
+        "telephone": "+91-8309-545-660",
+        "email": "omsrivenkatamba@gmail.com",
+        "url": "https://omsrivenkatamba.github.io/temple-website/",
+        "image": "https://omsrivenkatamba.github.io/temple-website/images/01-main-slide/01-main-slide1.jpg",
+        "openingHours": "Mo-Su 05:00-21:00"
+    }
+    </script>
+    
+    <style>
+        /* Quick inline loader */
+        #quickLoader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(135deg, var(--maroon-dark), var(--maroon-medium));
             z-index: 9999;
-            padding: 20px;
-        }
-        
-        .donation-modal {
-            background: white;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        .donation-topbar {
-            padding: 20px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 20px 20px 0 0;
-        }
-        
-        .donation-back {
-            background: none;
-            border: none;
-            font-size: 16px;
-            color: #333;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .donation-close {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-        }
-        
-        .donation-body {
-            padding: 30px;
-        }
-        
-        .donation-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        
-        @media (max-width: 768px) {
-            .donation-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .donation-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #dee2e6;
-        }
-        
-        .donation-option-row {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .donation-option-btn {
-            background: white;
-            border: 2px solid #dee2e6;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .donation-option-btn:hover {
-            border-color: var(--primary-red);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .donation-option-btn.active {
-            border-color: var(--primary-red);
-            background: rgba(198, 40, 40, 0.05);
-        }
-        
-        .donation-amount-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .donation-amount-btn {
-            padding: 12px 20px;
-            background: white;
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        
-        .donation-amount-btn:hover {
-            border-color: var(--primary-red);
-        }
-        
-        .donation-amount-btn.active {
-            background: var(--primary-red);
-            color: white;
-            border-color: var(--primary-red);
-        }
-        
-        .donation-pay-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .donation-pay-btn {
-            flex: 1;
-            min-width: 200px;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-        
-        .donation-pay-btn.phonepe {
-            background: linear-gradient(135deg, #5B259F, #3C1A6B);
-            color: white;
-        }
-        
-        .donation-pay-btn.upi {
-            background: white;
-            color: #333;
-            border: 2px solid #dee2e6;
-        }
-        
-        .donation-qr-box {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .donation-qr {
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .donation-qr img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .donation-help-card {
-            margin-top: 30px;
-        }
-        
-        .donation-help-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #dee2e6;
-        }
-        
-        /* Toast notification */
-        .donation-toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            z-index: 10000;
-            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Quick Loader -->
+    <div id="quickLoader">
+        <div style="text-align: center; color: white;">
+            <div style="width: 80px; height: 80px; background: var(--gold-gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2.5rem; color: var(--maroon-medium);">
+                <i class="fas fa-om"></i>
+            </div>
+            <div class="telugu-text" style="font-size: 1.5rem; font-weight: 600;">శ్రీ వేంకటాంబ</div>
+            <p style="margin-top: 10px;">Loading Divine Experience...</p>
+        </div>
+    </div>
+
     <!-- Header Top Section -->
     <div class="header-top">
         <div class="container">
@@ -1040,16 +89,16 @@
                 <div><i class="fas fa-envelope"></i> omsrivenkatamba@gmail.com</div>
             </div>
             <div class="header-top-right">
-                <a href="https://www.youtube.com/watch?v=N1EOF1RwuO4" target="_blank" class="social-icon">
+                <a href="https://www.youtube.com/watch?v=N1EOF1RwuO4" target="_blank" class="social-icon" title="YouTube" aria-label="YouTube">
                     <i class="fab fa-youtube"></i>
                 </a>
-                <a href="https://www.facebook.com/BhagavathiSriVenkatamba" target="_blank" class="social-icon">
+                <a href="https://www.facebook.com/BhagavathiSriVenkatamba" target="_blank" class="social-icon" title="Facebook" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="mailto:omsrivenkatamba@gmail.com" class="social-icon">
+                <a href="mailto:omsrivenkatamba@gmail.com" class="social-icon" title="Email" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://www.instagram.com" target="_blank" class="social-icon">
+                <a href="https://www.instagram.com" target="_blank" class="social-icon" title="Instagram" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
@@ -1090,9 +139,11 @@
                     </ul>
                 </nav>
                 
-                <button class="donate-btn" id="donateBtn">Donate Now</button>
+                <button class="donate-btn" id="donateBtn" aria-label="Donate Now">
+                    <i class="fas fa-hand-holding-heart"></i> Donate Now
+                </button>
                 
-                <button class="mobile-menu-btn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -1107,10 +158,10 @@
     </header>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu" style="display: none;">
         <div class="mobile-menu-header">
             <h3>Menu</h3>
-            <button class="mobile-menu-close" id="mobileMenuClose">
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close Menu">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -1132,7 +183,7 @@
             <li><a href="#activities">Recent Activities</a></li>
             <li><a href="#committee">Committee</a></li>
             <li><a href="#contact">Contact Us</a></li>
-            <li><a href="#" id="mobileDonateBtn" class="donate-btn" style="color: white; margin-top: 10px; text-align: center;">Donate Now</a></li>
+            <li><a href="#donate" class="donate-btn" style="color: white; margin-top: 10px; text-align: center;">Donate Now</a></li>
         </ul>
     </div>
     
@@ -1140,30 +191,19 @@
 
     <!-- Hero Slider -->
     <section class="hero" id="home">
-        <div class="slider">
-            <div class="slide active" style="background-image: url('images/01-main-slide/01-main-slide8.jpg');">
-                <div class="slide-content">
-                    <h2>శ్రీ వేంకటాంబ మందిరం</h2>
-                    <p>Bhagavathi Sri Venkatamba Temple - A Divine Abode</p>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/01-main-slide/01-main-slide11.jpg');">
-                <div class="slide-content">
-                    <h2>నిత్యకైంకర్యములు</h2>
-                    <p>Daily rituals and services at the temple</p>
-                </div>
-            </div>
+        <div class="slider" id="homeSlider">
+            <!-- Slider will be loaded by JavaScript -->
         </div>
     </section>
 
     <!-- Home Page Content -->
     <div class="container">
-        <section class="home-content">
-            <div class="home-section">
+        <section class="home-content" id="homeContent">
+            <div class="home-section animate-on-scroll">
                 <div class="home-left">
                     <h2 class="section-title">Welcome to Sri Venkatamba Temple</h2>
                     
-                    <div class="prayer-box">
+                    <div class="prayer-box float">
                         <div class="prayer-text telugu-text">
                             అమ్మ సంకీర్తన నామము<br>
                             శ్రీ వేంకటాంబ! శ్రీ వేంకటాంబ!<br>
@@ -1173,13 +213,13 @@
                         </div>
                     </div>
                     
-                    <p class="telugu-text">
+                    <p class="telugu-text animate-on-scroll">
                         భక్తి మార్గాన్ని అందరికి ఉపదేశిస్తూ, ఆశ్రమ అభివృద్ధి చేస్తూ, 
                         ఇక్కడి కార్యక్రమాల ద్వారా భావితరాల వారికి భక్తి మార్గాన్ని ఉపదేశించాలన్న 
                         ఒక చిన్న ప్రయత్నం.
                     </p>
                     
-                    <div style="margin-top: 30px;">
+                    <div class="animate-on-scroll" style="margin-top: 40px;">
                         <a href="https://www.youtube.com/watch?v=N1EOF1RwuO4" target="_blank" class="donate-btn">
                             <i class="fab fa-youtube"></i> Watch Jai Sri Venkatamba Video
                         </a>
@@ -1187,28 +227,33 @@
                 </div>
                 
                 <div class="home-right">
-                    <div class="donation-box">
+                    <div class="donation-box glow">
                         <h3>Support Our Temple Activities</h3>
-                        <p>Your donations help us continue our spiritual and community services</p>
+                        <p class="text-center" style="margin-bottom: 25px; color: #666; font-size: 1.1rem;">
+                            Your donations help us continue our spiritual and community services
+                        </p>
                         
                         <div class="donation-details">
-                            <h4>Bank Details:</h4>
+                            <h4 style="color: var(--maroon-medium); margin-bottom: 20px;">Bank Details:</h4>
                             <p><strong>Account Name:</strong> Bhagavathi Sri Venkatamba Temple</p>
                             <p><strong>Account No:</strong> 6866890630</p>
                             <p><strong>IFSC Code:</strong> IDIB000N127</p>
+                            <p><strong>Bank:</strong> Indian Bank</p>
                             <p><strong>Branch:</strong> Naidupet Branch</p>
                             
-                            <div style="margin: 20px 0;">
-                                <h4>UPI QR Code:</h4>
+                            <div style="margin: 30px 0;">
+                                <h4 style="color: var(--maroon-medium); margin-bottom: 20px;">UPI QR Code:</h4>
                                 <div class="qr-code">
-                                    <img src="images/01-main-slide/donation-qr2.png" alt="Scan to Donate QR" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto;">
+                                    <img src="images/01-main-slide/donation-qr2.png" alt="UPI QR Code" style="width: 100%; height: 100%; object-fit: contain;">
                                 </div>
                             </div>
                             
                             <p><strong>UPI ID:</strong> omsrivenkatamba@upi</p>
                         </div>
                         
-                        <button class="donate-btn" id="homeDonateBtn">Donate Now</button>
+                        <button class="donate-btn" id="homeDonateBtn" style="width: 100%;">
+                            <i class="fas fa-heart"></i> Donate Now
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1225,8 +270,32 @@
         <div class="container">
             <section class="about-content">
                 <div class="about-text telugu-text">
-                    <!-- Your about content here -->
-                    <p>Content from your original file...</p>
+                    <p class="animate-on-scroll">
+                        భక్తి సాగరంలో జ్ఞాన తరంగాలుంటాయని కొందరు, జ్ఞాన సాగరంలో భక్తి తరంగాలు ఉంటాయని కొందరు విజ్ఞులంటారు. నదీనాం సాగరోగతి: నదికి సాగరమే గతి , సముద్రంలో కలిసిపోయిన నదికి నామరూపాలుండవు, అలాగే భగవంతునిలో సర్వాత్మనా కలిసిపోయిన భక్తునికి నామరూపాలుండవు. అట్టి స్థితిని అందుకొన్న జ్ఞాని, భక్తురాలు అవధూత వేంకటాంబ. చదువు సంధ్యలు, అభిజాత్యము, గురూపదేశము పూర్వజన్మలోనే కాబోలు.
+                    </p>
+                    <p class="animate-on-scroll">
+                        ఈ జన్మలో మాత్రం మట్టిలో మాణిక్యం వేంకటాంబ. మురికి గుంటలో బురదనీటి స్నానము, మాదిగ లంబ (గల్ల తొట్టి) నీరు పానము, నారాయణ స్మరణము, శాంభవీ ముద్రలో బ్రహ్మానుసంధానము, అప్పుడప్పుడు గృహస్థులిండ్లల్లో భిక్షకై ఒక చేతిలో మట్టి మూకుడు, మరొక చేతిలో దండము, మాసిపోని మేనిఛాయ, సూర్యుని కాంతి, చంద్రుని చలువ ఒక్కటైన కన్నులుగల తల్లి అవధూత వేంకటాంబ.
+                    </p>
+                    
+                    <div class="about-image animate-on-scroll">
+                        <img src="images/01-main-slide/01-main-slide7.jpg" alt="శ్రీ వేంకటాంబ మందిరం">
+                        <div style="position: absolute; bottom: 30px; left: 30px; color: white; z-index: 2; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); font-size: 1.5rem; font-weight: 600;">
+                            శ్రీ వేంకటాంబ మందిరం
+                        </div>
+                    </div>
+                    
+                    <p class="animate-on-scroll">
+                        వేంకటాంబను గొప్ప అవధూతగా గుర్తించిన వారు స్వామి నిఖిలనాధుల వారు. ఆయనచే వేంకటాంబ వారి దగ్గరకు పంపబడిన శిష్యులు వటుకనాధుడు. అమ్మ ఆయనకు పెట్టిన పేరు కృష్ణమాచార్యులు. గురువుల ఆదేశం మేరకు వటుకనాధుల వారు 1994 నుంచి వేంకటాంబ తల్లికి చేసిన కఠోర సేవ అసాధారణం మరియు వెలకట్టలేనిది.
+                    </p>
+                    <p class="animate-on-scroll">
+                        అసాధారణ భగవన్నామస్మరణచే ముక్తికి చేరువైన వేంకటాంబ వారు, వారి భక్తులకు యోగ్యతను బట్టి కొందరికి మంత్రోపదేశము, కొందరికి హితము, కొందరికి సూర్య నమస్కారములు, వినాయక పూజ, శివాభిషేకం, అన్నదానం, నామస్మరణ, భజన బోధించినది. అమ్మ మహిమలు అనేకం (పూర్తి వివరాల కోసం క్లుప్తంగా ప్రచురించబడిన అమ్మ జీవిత చరిత్రను డౌన్లోడ్ చేసుకొనగలరు). తను శరీరాన్ని చాలించే తేదీ/ సమయాన్ని ముందుగానే శిష్యునికి చెప్పి నవంబరు 4, 2000 నాడు వేంకటాంబవారు భగవంతునిలో ఐక్యమయ్యారు.
+                    </p>
+                    <p class="animate-on-scroll">
+                        శ్రీ వేంకటాంబవారి సమాధి, ఆశ్రమము కఱబల్లవోలులో నిర్మించబడినది. శిష్యులు వటుకనాధుల వారు భిక్షాటనకై కొన్ని వందల గ్రామాలు తిరిగి, దానితో సేకరించిన ధనంతో ఆశ్రమాన్ని నిర్మించడం జరిగినది. వటుకనాధుల వారిచే అమ్మ వారి పూజ విధానము, అనేక పుస్తకములు, నామ స్మరణ శ్లోకము, అష్టోత్తరం, సహస్రనామము, కర్పూర హారతి, సుప్రభాతసేవ, నిత్యపూజ, ఏకాంతసేవ.. అనేకం లిఖించబడినవి. నిత్యము ఆయనచే మరియు భక్తులచేత నిత్యపూజలు జరుగుతున్నవి.
+                    </p>
+                    <p class="animate-on-scroll">
+                        శ్రీ వేంకటాంబవారి ఆశ్రమ అభివృద్ధి మరియు గుడి కార్యక్రమాలు, భక్తులు మరియు కఱబల్లవోలు గ్రామస్థులచే నిర్ధారించిన, నిర్మించబడిన కమిటీ చేత జరపబడుతున్నవి. అమ్మవారి ఆశ్రమ అభివృద్ధి సాధనకు విరాళాలు ఇస్తున్న భక్తులు అనేకం. అమ్మవారి ఆశ్రమములో పెళ్లిళ్లు, ఆరాధన, అన్నదాన, పుట్టు వెంట్రుకలు తీయడం వంటి కార్యక్రమాలు జరుగుతుంటాయి.
+                    </p>
                 </div>
             </section>
         </div>
@@ -1241,8 +310,8 @@
         
         <div class="container">
             <section class="services-content">
-                <div class="services-grid">
-                    <!-- Service cards from your original file -->
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services will be loaded by JavaScript -->
                 </div>
             </section>
         </div>
@@ -1257,7 +326,14 @@
         
         <div class="container">
             <section class="activities-content">
-                <!-- Activities content from your original file -->
+                <h2 class="section-title animate-on-scroll">నిత్యకైంకర్యములు</h2>
+                <p class="telugu-text animate-on-scroll" style="max-width: 800px; margin: 0 auto 40px; text-align: center;">
+                    శ్రీ భగవతి వేంకటాంబ వారి విశేష పూజలు ప్రతిరోజు శ్రీ వటుకనాధుల వారు మరియు భక్తులచే ఉదయాన్నే సుప్రభాత సేవతో మొదలయి ఏకాంత సేవ వరకు జరుపబడును.
+                </p>
+                
+                <div class="activities-grid" id="activitiesGrid">
+                    <!-- Activities will be loaded by JavaScript -->
+                </div>
             </section>
         </div>
     </div>
@@ -1271,7 +347,14 @@
         
         <div class="container">
             <section class="committee-content">
-                <!-- Committee content from your original file -->
+                <h2 class="section-title telugu-text animate-on-scroll">కమిటీ సభ్యులు</h2>
+                <p class="text-center animate-on-scroll" style="max-width: 800px; margin: 0 auto 40px; color: #666; font-size: 1.1rem;">
+                    Dedicated individuals working tirelessly for the temple's development and community service
+                </p>
+                
+                <div class="committee-grid" id="committeeGrid">
+                    <!-- Committee will be loaded by JavaScript -->
+                </div>
             </section>
         </div>
     </div>
@@ -1282,230 +365,254 @@
             <h1>Contact Us</h1>
             <p>Get in touch with Bhagavathi Sri Venkatamba Temple</p>
         </div>
-    
+        
         <div class="container">
-            <!-- Contact content from your original file -->
-        </div>
-    </div>
-
-    <!-- Donation Modal -->
-    <div class="donation-modal-overlay" id="donationModal">
-        <div class="donation-modal">
-            <div class="donation-topbar">
-                <button class="donation-back" id="donationBackBtn">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-                <div style="text-align: center;">
-                    <h3 style="margin: 0;">Donate Now</h3>
-                    <p style="margin: 5px 0 0 0; font-size: 14px; color: #666;">Support Our Temple Activities</p>
-                </div>
-                <button class="donation-close" id="closeDonationModal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="donation-body">
-                <div class="donation-grid">
-                    <!-- Left Column - Donation Options -->
-                    <div class="donation-card">
-                        <h3>Choose Donation Method</h3>
+            <section class="contact-content">
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <h2 class="section-title animate-on-scroll" style="font-size: 2rem; margin-bottom: 30px;">Send Us a Message</h2>
+                        <p class="animate-on-scroll" style="margin-bottom: 30px; color: #666;">
+                            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                        </p>
                         
-                        <div class="donation-option-row">
-                            <button class="donation-option-btn active" data-panel="upi">
-                                <div style="font-weight: bold; font-size: 16px;">
-                                    <i class="fas fa-mobile-alt"></i> PhonePe / Any UPI
-                                </div>
-                                <div style="font-size: 14px; color: #666; margin-top: 5px;">
-                                    Pay using UPI apps (PhonePe, GPay, Paytm, etc.)
-                                </div>
+                        <form id="contactForm">
+                            <div class="form-group animate-on-scroll">
+                                <label for="name">Your Name *</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="form-group animate-on-scroll">
+                                <label for="email">Your Email *</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                            </div>
+                            
+                            <div class="form-group animate-on-scroll">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                            </div>
+                            
+                            <div class="form-group animate-on-scroll">
+                                <label for="subject">Subject *</label>
+                                <input type="text" class="form-control" id="subject" placeholder="What is this regarding?" required>
+                            </div>
+                            
+                            <div class="form-group animate-on-scroll">
+                                <label for="message">Your Message *</label>
+                                <textarea class="form-control" id="message" rows="6" placeholder="Type your message here..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn animate-on-scroll" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Send Message
                             </button>
-                            
-                            <button class="donation-option-btn" data-panel="bank">
-                                <div style="font-weight: bold; font-size: 16px;">
-                                    <i class="fas fa-university"></i> Direct Bank Transfer
-                                </div>
-                                <div style="font-size: 14px; color: #666; margin-top: 5px;">
-                                    IMPS / NEFT / RTGS transfer
-                                </div>
-                            </button>
-                            
-                            <button class="donation-option-btn" data-panel="netbanking">
-                                <div style="font-weight: bold; font-size: 16px;">
-                                    <i class="fas fa-building-columns"></i> NetBanking
-                                </div>
-                                <div style="font-size: 14px; color: #666; margin-top: 5px;">
-                                    Open your bank's netbanking portal
-                                </div>
-                            </button>
-                        </div>
-                        
-                        <!-- UPI Panel (Default) -->
-                        <div id="upiPanel" class="donation-panel">
-                            <h4 style="margin: 20px 0 10px 0;">Select Amount (₹)</h4>
-                            <div class="donation-amount-row">
-                                <button class="donation-amount-btn" data-amount="101">₹101</button>
-                                <button class="donation-amount-btn" data-amount="251">₹251</button>
-                                <button class="donation-amount-btn active" data-amount="501">₹501</button>
-                                <button class="donation-amount-btn" data-amount="1001">₹1001</button>
-                                <button class="donation-amount-btn" data-amount="2001">₹2001</button>
-                                <button class="donation-amount-btn" data-amount="5001">₹5001</button>
-                            </div>
-                            
-                            <div style="margin: 15px 0;">
-                                <input type="number" id="customAmount" placeholder="Enter custom amount" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;">
-                            </div>
-                            
-                            <div class="donation-pay-row">
-                                <button class="donation-pay-btn phonepe" id="payPhonePe">
-                                    <i class="fas fa-mobile-alt"></i> PhonePe
-                                </button>
-                                <button class="donation-pay-btn upi" id="payAnyUpi">
-                                    <i class="fas fa-qrcode"></i> Any UPI App
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Bank Transfer Panel -->
-                        <div id="bankPanel" class="donation-panel" style="display: none;">
-                            <h4 style="margin: 20px 0 10px 0;">Bank Details</h4>
-                            <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0;">
-                                <p><strong>Account Name:</strong> Bhagavathi Sri Venkatamba Temple</p>
-                                <p><strong>Account Number:</strong> 6866890630</p>
-                                <p><strong>IFSC Code:</strong> IDIB000N127</p>
-                                <p><strong>Bank:</strong> Indian Bank</p>
-                                <p><strong>Branch:</strong> Naidupet Branch</p>
-                            </div>
-                            
-                            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                                <button class="donate-btn" id="copyAccount" style="flex: 1;">
-                                    <i class="fas fa-copy"></i> Copy Account
-                                </button>
-                                <button class="donate-btn" id="copyIfsc" style="flex: 1;">
-                                    <i class="fas fa-copy"></i> Copy IFSC
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- NetBanking Panel -->
-                        <div id="netbankingPanel" class="donation-panel" style="display: none;">
-                            <h4 style="margin: 20px 0 10px 0;">NetBanking</h4>
-                            <div style="margin: 15px 0;">
-                                <select id="bankSelect" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px;">
-                                    <option value="">Select your bank</option>
-                                    <option value="sbi">State Bank of India (SBI)</option>
-                                    <option value="hdfc">HDFC Bank</option>
-                                    <option value="icici">ICICI Bank</option>
-                                    <option value="axis">Axis Bank</option>
-                                    <option value="kotak">Kotak Mahindra Bank</option>
-                                </select>
-                            </div>
-                            
-                            <button class="donate-btn" id="openNetbanking" style="width: 100%; margin-top: 10px;">
-                                <i class="fas fa-external-link-alt"></i> Open NetBanking
-                            </button>
-                            
-                            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
-                                <p style="font-size: 14px; color: #666;">
-                                    <i class="fas fa-info-circle"></i> After completing the transfer, please send the receipt to omsrivenkatamba@gmail.com
-                                </p>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     
-                    <!-- Right Column - QR Code -->
-                    <div class="donation-card">
-                        <div class="donation-qr-box">
-                            <h3>Scan QR Code</h3>
-                            <p>Scan with any UPI app to donate</p>
+                    <div class="contact-info">
+                        <div class="contact-details">
+                            <h2 class="section-title animate-on-scroll" style="font-size: 2rem; margin-bottom: 30px;">Find Us Here</h2>
+                            <p class="telugu-text animate-on-scroll" style="margin-bottom: 30px;">
+                                శ్రీశ్రీశ్రీ భగవతీ వేంకటాంబ వారి మందిరము నాయుడుపేటకు సమీపములో నిర్మించబడినది. 
+                                పున్నేపల్లి మీదుగా కేవలము 12 కిలోమీటర్లు దూరంలో అమ్మవారి సన్నిధికి చేరుకొనవచ్చును.
+                            </p>
                             
-                            <div class="donation-qr">
-                                <img src="images/01-main-slide/donation-qr2.png" alt="Donation QR Code">
+                            <div class="contact-item animate-on-scroll">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Our Address</h4>
+                                    <p class="telugu-text" style="font-weight: 600;">శ్రీశ్రీశ్రీ భగవతీ వేంకటాంబ వారి మందిరము</p>
+                                    <p>కఱబల్లవోలు గ్రామము, ఓజిలి మండలము</p>
+                                    <p>నెల్లూరు జిల్లా - 524401, ఆంధ్రప్రదేశ్</p>
+                                    <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                                        <i class="fas fa-id-card"></i> Registration No: 1/BKIV/2020
+                                    </p>
+                                </div>
                             </div>
                             
-                            <div style="margin: 20px 0; padding: 10px; background: white; border-radius: 8px;">
-                                <p style="margin: 0; font-weight: bold;">UPI ID:</p>
-                                <p style="margin: 5px 0 0 0; font-size: 18px; color: var(--primary-red);">
-                                    omsrivenkatamba@upi
-                                </p>
-                                <button class="donate-btn" id="copyUpi" style="margin-top: 10px;">
-                                    <i class="fas fa-copy"></i> Copy UPI ID
-                                </button>
+                            <div class="contact-item animate-on-scroll">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone Contacts</h4>
+                                    <p><strong>గెరికి బలరామయ్య</strong></p>
+                                    <p><i class="fas fa-phone"></i> +91 8309 545 660</p>
+                                    <div style="margin-top: 15px;">
+                                        <p><strong>WhatsApp Contacts:</strong></p>
+                                        <p><i class="fab fa-whatsapp"></i> గెరికి హేమంత్ కుమార్: +1 425 326 7715</p>
+                                        <p><i class="fab fa-whatsapp"></i> రామనారాయణ: +91 9908 714 878</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item animate-on-scroll">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p><i class="fas fa-envelope"></i> omsrivenkatamba@gmail.com</p>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="donation-help-card">
-                            <h4>Need Help?</h4>
-                            <div class="donation-help-item">
-                                <i class="fas fa-phone" style="color: var(--primary-red);"></i>
-                                <div>
-                                    <div style="font-weight: bold;">Call Us</div>
-                                    <div>+91 8309 545 660</div>
-                                </div>
-                            </div>
-                            <div class="donation-help-item">
-                                <i class="fas fa-envelope" style="color: var(--primary-red);"></i>
-                                <div>
-                                    <div style="font-weight: bold;">Email Us</div>
-                                    <div>omsrivenkatamba@gmail.com</div>
-                                </div>
-                            </div>
+                        <div class="map-container animate-on-scroll">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.8347130071475!2d79.84272071520232!3d13.968442090207535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d1b7d6eec89e7%3A0x339ab6f28183fc1e!2sBhagavathi%20Sri%20Venkatamba%20Mandiram!5e0!3m2!1sen!2sin!4v1596889021009!5m2!1sen!2sin"
+                                style="border:0; width: 100%; height: 100%;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Temple Location on Google Maps"
+                                aria-label="Google Maps showing temple location">
+                            </iframe>
                         </div>
                     </div>
                 </div>
-            </div>
+                
+                <!-- Temple Photos Gallery -->
+                <div style="margin-top: 80px;">
+                    <h2 class="section-title animate-on-scroll" style="text-align: center; font-size: 2.2rem;">Temple Gallery</h2>
+                    <p class="text-center animate-on-scroll" style="margin-bottom: 40px; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        Explore the divine beauty and spiritual atmosphere of Sri Venkatamba Temple
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px;">
+                        <div class="animate-on-scroll" style="border-radius: 20px; overflow: hidden; box-shadow: var(--depth-3); transition: var(--transition-medium);">
+                            <img src="images/01-main-slide/01-main-slide1.jpg" alt="Temple Entrance" style="width: 100%; height: 250px; object-fit: cover;">
+                        </div>
+                        <div class="animate-on-scroll" style="border-radius: 20px; overflow: hidden; box-shadow: var(--depth-3); transition: var(--transition-medium);">
+                            <img src="images/01-main-slide/01-main-slide2.jpg" alt="Temple Architecture" style="width: 100%; height: 250px; object-fit: cover;">
+                        </div>
+                        <div class="animate-on-scroll" style="border-radius: 20px; overflow: hidden; box-shadow: var(--depth-3); transition: var(--transition-medium);">
+                            <img src="images/01-main-slide/01-main-slide3.jpg" alt="Temple Interior" style="width: 100%; height: 250px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
-
-    <!-- Toast Notification -->
-    <div class="donation-toast" id="donationToast"></div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
+                <div class="footer-column animate-on-scroll">
                     <h3>Bhagavathi Sri Venkatamba</h3>
-                    <p class="telugu-text">శ్రీ వేంకటాంబ మందిరం</p>
-                    <p>A divine abode for spiritual seekers and devotees. Our temple serves as a center for community service, spiritual growth, and cultural preservation.</p>
+                    <div class="telugu-text" style="margin-bottom: 20px; font-size: 1.2rem; font-weight: 600;">శ్రీ వేంకటాంబ మందిరం</div>
+                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 25px;">
+                        A divine spiritual center dedicated to Bhagavathi Sri Venkatamba, serving the community through various spiritual, cultural, and charitable activities.
+                    </p>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/BhagavathiSriVenkatamba" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/watch?v=N1EOF1RwuO4" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="mailto:omsrivenkatamba@gmail.com"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/BhagavathiSriVenkatamba" target="_blank" title="Facebook" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=N1EOF1RwuO4" target="_blank" title="YouTube" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="mailto:omsrivenkatamba@gmail.com" title="Email" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" title="Instagram" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="footer-column">
+                <div class="footer-column animate-on-scroll">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#activities">Recent Activities</a></li>
-                        <li><a href="#committee">Committee</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#activities"><i class="fas fa-chevron-right"></i> Recent Activities</a></li>
+                        <li><a href="#committee"><i class="fas fa-chevron-right"></i> Committee</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-column">
+                <div class="footer-column animate-on-scroll">
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Karaballavolu Village, Ozili Mandal, Nellore District - 524401, Andhra Pradesh</li>
-                        <li><i class="fas fa-phone"></i> +91 8309 545 660</li>
-                        <li><i class="fas fa-envelope"></i> omsrivenkatamba@gmail.com</li>
-                        <li><i class="fas fa-id-card"></i> Registration No: 1/BKIV/2020</li>
+                        <li style="margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                            Karaballavolu Village, Ozili Mandal<br>
+                            Nellore District - 524401, Andhra Pradesh
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                            +91 8309 545 660
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                            omsrivenkatamba@gmail.com
+                        </li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; <span id="currentYear"></span> Bhagavathi Sri Venkatamba Temple. All Rights Reserved.</p>
-                <p style="margin-top: 5px;">80G Approved | Darpan Approved | FCRA Approved</p>
+                <p>&copy; <span id="currentYear"></span> Bhagavathi Sri Venkatamba Temple. All Rights Reserved. | Registration No: 1/BKIV/2020</p>
             </div>
         </div>
     </footer>
 
+    <!-- Donation Modal -->
+    <div id="donationModal">
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 style="color: var(--maroon-medium); font-size: 2.2rem;">Donation Details</h2>
+                <button id="closeModal" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--maroon-medium);" aria-label="Close Modal">&times;</button>
+            </div>
+            
+            <div class="donation-details" style="margin-bottom: 30px;">
+                <h3 style="color: var(--maroon-medium); margin-bottom: 20px;">Bank Transfer Details:</h3>
+                <p><strong>Account Name:</strong> Bhagavathi Sri Venkatamba Temple</p>
+                <p><strong>Account No:</strong> 6866890630</p>
+                <p><strong>IFSC Code:</strong> IDIB000N127</p>
+                <p><strong>Bank:</strong> Indian Bank</p>
+                <p><strong>Branch:</strong> Naidupet Branch</p>
+                
+                <div style="margin: 30px 0;">
+                    <h3 style="color: var(--maroon-medium); margin-bottom: 20px;">UPI Payment:</h3>
+                    <p><strong>UPI ID:</strong> omsrivenkatamba@upi</p>
+                    <div class="qr-code">
+                        <img src="images/01-main-slide/donation-qr.jpg" alt="UPI QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+                
+                <div style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 15px; border-left: 4px solid var(--gold-medium); margin-top: 25px;">
+                    <p style="color: #666; font-style: italic; margin: 0;">
+                        <i class="fas fa-info-circle" style="color: var(--gold-medium); margin-right: 10px;"></i>
+                        Your donations are eligible for tax exemption under 80G of Income Tax Act.
+                    </p>
+                </div>
+            </div>
+            
+            <button id="closeModalBtn" class="donate-btn" style="width: 100%;">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+    </div>
+
     <!-- JavaScript Files -->
     <script src="main.js"></script>
+    
+    <!-- Quick loader removal -->
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const quickLoader = document.getElementById('quickLoader');
+                if (quickLoader) {
+                    quickLoader.style.opacity = '0';
+                    quickLoader.style.transition = 'opacity 0.5s ease';
+                    setTimeout(function() {
+                        quickLoader.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
