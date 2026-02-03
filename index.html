@@ -2325,6 +2325,8 @@
 
                         <!-- Details panels (hidden until option is chosen) -->
                         <div id="upiPanel" style="display:none; margin-top:18px;">
+                            <a id="upiLauncher" href="#" style="display:none;"></a>
+                            <a id="phonepeLauncher" href="#" style="display:none;"></a>
                             <div class="donation-label">Select Amount (INR)</div>
 
                             <div class="donation-amount-row">
@@ -3477,40 +3479,7 @@
                 bankSelectEl.appendChild(opt);
             });
         }
-
-
-        // ===== Ensure UPI buttons work (Android) =====
-        function isMobilePaymentDevice(){
-            const ua = navigator.userAgent || '';
-            const isMobileUA = /Android|iPhone|iPad|iPod/i.test(ua);
-            const isTouch = (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
-            return isMobileUA || isTouch;
-        }
-        function openDeepLink(url){
-            window.location.href = url;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const payPhonePeBtn = document.getElementById('payPhonePe');
-            const payAnyUpiBtn = document.getElementById('payAnyUpi');
-
-            if(payPhonePeBtn){
-                payPhonePeBtn.addEventListener('click', () => {
-                    const amount = getSelectedAmount();
-                    if(!amount){ showToast('Please select or enter an amount.'); return; }
-
-                    if(!isMobilePaymentDevice()){
-                        showToast('UPI links open on phones. Please scan the QR code.');
-                        return;
-                    }
-
-                    const phonepeUrl = buildPhonePeUrl(amount);
-                    const upiUrl = buildUpiUrl(amount);
-
-                    openDeepLink(phonepeUrl);
-                    setTimeout(() => { openDeepLink(upiUrl); }, 900);
-                });
-            }
+}
 
             if(payAnyUpiBtn){
                 payAnyUpiBtn.addEventListener('click', () => {
@@ -3544,7 +3513,115 @@
             }
         });
 
-    </script>
+    
+        // ===== Robust Android app launching for UPI / PhonePe =====
+        function buildUpiIntentUrl(amount){
+            const params = new URLSearchParams();
+            params.set('pa', upiId);
+            params.set('pn', payeeName);
+            params.set('am', String(amount));
+            params.set('cu', currency);
+            params.set('tn', 'Temple Donation');
+            // Android intent is often more reliable than upi:// in Chrome
+            return 'intent://pay?' + params.toString() + '#Intent;scheme=upi;end';
+        }
+
+        function buildPhonePeIntentUrl(amount){
+            const params = new URLSearchParams();
+            params.set('pa', upiId);
+            params.set('pn', payeeName);
+            params.set('am', String(amount));
+            params.set('cu', currency);
+            params.set('tn', 'Temple Donation');
+            return 'intent://pay?' + params.toString() + '#Intent;scheme=phonepe;package=com.phonepe.app;end';
+        }
+
+        function launchCustomScheme(href){
+            // Using an <a> click is often more reliable on Android Chrome than window.location
+            const a = document.createElement('a');
+            a.href = href;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => a.remove(), 500);
+        }
+
+        function tryLaunch(primaryHref, fallbackHref){
+            // Attempt primary; if it fails silently, try fallback after ~1s
+            launchCustomScheme(primaryHref);
+            if(fallbackHref){
+                setTimeout(() => launchCustomScheme(fallbackHref), 1100);
+            }
+        }
+
+        function bindDonateOptionButtons(){
+            const optUpi = document.getElementById('optUpi');
+            const optBank = document.getElementById('optBank');
+            const optNet = document.getElementById('optNet');
+            const upiPanel = document.getElementById('upiPanel');
+            const bankPanel = document.getElementById('bankPanel');
+            const netPanel = document.getElementById('netPanel');
+
+            function clearActive(){
+                [optUpi,optBank,optNet].forEach(x => x && x.classList.remove('active'));
+                if(upiPanel) upiPanel.style.display = 'none';
+                if(bankPanel) bankPanel.style.display = 'none';
+                if(netPanel) netPanel.style.display = 'none';
+            }
+            function show(which){
+                clearActive();
+                if(which==='upi'){
+                    if(optUpi) optUpi.classList.add('active');
+                    if(upiPanel){ upiPanel.style.display='block'; upiPanel.scrollIntoView({behavior:'smooth', block:'start'}); }
+                }else if(which==='bank'){
+                    if(optBank) optBank.classList.add('active');
+                    if(bankPanel){ bankPanel.style.display='block'; bankPanel.scrollIntoView({behavior:'smooth', block:'start'}); }
+                }else if(which==='net'){
+                    if(optNet) optNet.classList.add('active');
+                    if(netPanel){ netPanel.style.display='block'; netPanel.scrollIntoView({behavior:'smooth', block:'start'}); }
+                }
+            }
+
+            if(optUpi) optUpi.onclick = () => show('upi');
+            if(optBank) optBank.onclick = () => show('bank');
+            if(optNet) optNet.onclick = () => show('net');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            bindDonateOptionButtons();
+
+            const payPhonePeBtn = document.getElementById('payPhonePe');
+            const payAnyUpiBtn = document.getElementById('payAnyUpi');
+
+            if(payPhonePeBtn){
+                payPhonePeBtn.onclick = () => {
+                    const amount = getSelectedAmount();
+                    if(!amount){ showToast('Please select or enter an amount.'); return; }
+
+                    // PhonePe intent first, then fallback to generic UPI intent, then upi://
+                    const phonepeIntent = buildPhonePeIntentUrl(amount);
+                    const upiIntent = buildUpiIntentUrl(amount);
+                    const upiScheme = buildUpiUrl(amount);
+
+                    tryLaunch(phonepeIntent, upiIntent);
+                    setTimeout(() => launchCustomScheme(upiScheme), 2200);
+                };
+            }
+
+            if(payAnyUpiBtn){
+                payAnyUpiBtn.onclick = () => {
+                    const amount = getSelectedAmount();
+                    if(!amount){ showToast('Please select or enter an amount.'); return; }
+
+                    const upiIntent = buildUpiIntentUrl(amount);
+                    const upiScheme = buildUpiUrl(amount);
+
+                    tryLaunch(upiIntent, upiScheme);
+                };
+            }
+        });
+
+</script>
 
 <script>
 (function(){
