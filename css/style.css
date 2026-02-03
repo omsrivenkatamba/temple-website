@@ -1,178 +1,93 @@
-:root {
-    --red: #c62828;
-    --dark-red: #8e0000;
-    --gold: #ffd700;
+/* Additional styles if needed */
+/* Most styles are in the index.html file */
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-    font-family: 'Noto Sans Telugu', sans-serif;
-    line-height: 1.6;
-    color: #333;
+/* Make sure donation modal is on top */
+.donation-modal-overlay {
+    z-index: 9999 !important;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header */
-.main-header {
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-top {
-    background: var(--dark-red);
-    color: white;
-    padding: 8px 0;
-    font-size: 0.9rem;
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    padding: 15px 0;
-}
-
-.logo {
-    width: 70px;
-    height: 70px;
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.2rem;
-    margin-right: 15px;
-    border: 3px solid var(--red);
-}
-
-.donate-btn {
-    background: var(--red);
-    color: white;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.donate-btn:hover {
-    background: var(--dark-red);
-}
-
-/* Hero */
-.hero {
-    height: 450px;
-    position: relative;
+/* Ensure body doesn't scroll when modal is open */
+body.modal-open {
     overflow: hidden;
 }
 
-.slide {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.2s;
-}
-
-.slide.active { opacity: 1; }
-
-/* Donation Modal */
+/* Smooth transitions */
 .donation-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+    animation: modalSlideIn 0.3s ease-out;
 }
 
-.donation-modal-content {
-    background: white;
-    max-width: 600px;
-    width: 90%;
-    padding: 30px;
-    border-radius: 12px;
-    position: relative;
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
+/* Toast animation */
+.donation-toast {
+    animation: toastSlideUp 0.3s ease-out;
 }
 
-.donation-options {
-    display: flex;
-    margin: 20px 0;
-    border-bottom: 1px solid #ddd;
+@keyframes toastSlideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
-.option {
-    padding: 12px 24px;
-    cursor: pointer;
-    font-weight: 600;
+/* Loading spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-red);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
 }
 
-.option.active {
-    color: var(--red);
-    border-bottom: 3px solid var(--red);
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.payment-panel {
-    padding: 20px 0;
+/* Form validation styles */
+.error {
+    border-color: #ff3860 !important;
 }
 
-.amount-selector {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 20px 0;
+.error-message {
+    color: #ff3860;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
-.donation-amount-btn {
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #f9f9f9;
-    cursor: pointer;
+.success {
+    border-color: #23d160 !important;
 }
 
-.donation-amount-btn.active {
-    background: var(--red);
-    color: white;
-    border-color: var(--red);
-}
-
-#customAmountInput {
-    padding: 10px;
-    width: 140px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-.upi-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-    flex-wrap: wrap;
-}
-
-.small-note {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 15px;
+/* Print styles for receipts */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .donation-modal {
+        box-shadow: none !important;
+        position: relative !important;
+    }
 }
